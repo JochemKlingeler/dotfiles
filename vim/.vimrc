@@ -17,7 +17,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gmist/vim-palette'
 Plugin 'luochen1990/rainbow'
-Plugin 'MaxSt/FlatColor'
+Plugin 'challenger-deep-theme/vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Tags
@@ -81,12 +81,13 @@ map <leader><C-d> "0<C-d>
 map <leader>dd "0dd
 
 """ Colors
-colorscheme flatcolor
-let g:flatcolor_termcolors = 16
-set background=dark
+colorscheme challenger_deep
+"let g:flatcolor_termcolors = 16
+let g:lightline = {'colorscheme': 'challenger_deep'}
+" set background=dark
 
 """ UI
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3 " Seems to cause trouble, see https://github.com/tpope/vim-vinegar/issues/13
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
