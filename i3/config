@@ -159,3 +159,7 @@ bindsym XF86AudioPlay exec playerctl -p spotify play-pause
 bindsym XF86AudioStop exec playerctl -p spotify stop
 bindsym XF86AudioNext exec playerctl -p spotify next
 bindsym XF86AudioPrev exec playerctl -p spotify prev
+
+# Screenshots
+bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f ~/Pictures/screenshots'
+
