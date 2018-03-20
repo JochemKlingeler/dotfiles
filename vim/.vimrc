@@ -19,6 +19,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'challenger-deep-theme/vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" Debugger
+Plugin 'vim-vdebug/vdebug'
 " PHP
 Plugin 'StanAngeloff/php.vim'
 Plugin 'arnaud-lb/vim-php-namespace'
