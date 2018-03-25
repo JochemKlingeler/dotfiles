@@ -21,11 +21,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Debugger
 Plugin 'vim-vdebug/vdebug'
-" PHP
-Plugin 'StanAngeloff/php.vim'
-Plugin 'arnaud-lb/vim-php-namespace'
+" Syntax and auto complete
 Plugin 'vim-syntastic/syntastic'
-Plugin 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -33,8 +30,16 @@ else
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
 endif
-Plugin 'Shougo/echodoc.vim'
 Plugin 'Shougo/denite.nvim'
+" PHP
+Plugin 'StanAngeloff/php.vim'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plugin 'Shougo/echodoc.vim'
+" Rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+Plugin 'sebastianmarkow/deoplete-rust'
 
 call vundle#end()
 filetype plugin indent on
@@ -122,6 +127,7 @@ augroup END
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
    \ 'php': ['php', getcwd() . '/vendor/bin/php-language-server.php'],
+   \ 'rust': ['rustup', 'run', 'stable', 'rls'],
    \ }
 let g:LanguageClient_loggingLevel = 'DEBUG'
 
@@ -129,6 +135,12 @@ let g:LanguageClient_loggingLevel = 'DEBUG'
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+""" Rust Racer
+set hidden
+let g:racer_cmd = "~/.cargo/bin"
+let g:deoplete#sources#rust#racer_binary='~/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
 """ Denite bindings
 call denite#custom#option('default', {
