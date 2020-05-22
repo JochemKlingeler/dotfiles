@@ -1,7 +1,5 @@
 # Custom commands
 alias rman="apropos . | shuf -n 1 | awk '{print $1}'| xargs man"
-alias CDK="cd /srv/git/KlingelerLedenAdministratieSysteem"
-alias phpd="php -xdebug.remote_autostart=1"
 
 export TERM=xterm-256color
 
