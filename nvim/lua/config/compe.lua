@@ -1,6 +1,10 @@
 local utils = require('utils')
 
-vim.o.completeopt = "menuone,noselect"
+-- menuone: Show popup when only one option is available
+-- noinsert: Do not insert text until selection is done
+-- noselect: Do not automatically select the first result
+vim.o.completeopt = "menuone,noinsert,noselect"
+
 require'compe'.setup {
     enabled = true;
     autocomplete = true;
@@ -31,6 +35,6 @@ require'compe'.setup {
 utils.map('i', '<C-Space>', [[compe#complete()]], {silent=true, expr=true})
 utils.map('i', '<CR>', [[compe#confirm('<CR>')]], {silent=true, expr=true})
 utils.map('i', '<C-e>', [[compe#close('<C-e>')]], {silent=true, expr=true})
-utils.map('i', '<C-f>', [[compe#scroll({ 'delta': +4 })]], {silent=true, expr=true})
-utils.map('i', '<C-d>', [[compe#scroll({ 'delta': -4 })]], {silent=true, expr=true})
+--utils.map('i', '<C-f>', [[compe#scroll({ 'delta': +4 })]], {silent=true, expr=true})
+--utils.map('i', '<C-d>', [[compe#scroll({ 'delta': -4 })]], {silent=true, expr=true})
 
