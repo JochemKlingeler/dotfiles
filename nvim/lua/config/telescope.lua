@@ -15,8 +15,8 @@ utils.map('n', '<Leader>fic', [[<cmd>lua require('telescope.builtin').git_commit
 -- LSP
 utils.map('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]])
 utils.map('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]])
-utils.map('n', '<Leader>ca', [[<cmd>lua require('telescope.builtin').lsp_code_action()<CR>]])
-utils.map('v', '<Leader>ca', [[<cmd>lua require('telescope.builtin').lsp_range_code_action()<CR>]])
+utils.map('n', '<Leader>ca', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]])
+utils.map('v', '<Leader>ca', [[<cmd>lua require('telescope.builtin').lsp_range_code_actions()<CR>]])
 utils.map('n', '<Leader>cd', [[<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<CR>]])
 utils.map('n', '<Leader>cD', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]])
 
