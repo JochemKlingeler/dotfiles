@@ -24,3 +24,17 @@ end
 
 nvim_lsp.rust_analyzer.setup { on_attach = on_attach }
 
+local showHit = [[:lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }]]
+local utils = require('utils')
+utils.create_augroups(
+    {
+        lsp_extensions = {
+            {"InsertLeave", "*.rs", showHit}
+            {"BufEnter", "*.rs", showHit}
+            {"BufWinEnter", "*.rs", showHit}
+            {"TabEnter", "*.rs", showHit}
+            {"BufWritePost", "*.rs", showHit}
+        }
+    }
+)
+

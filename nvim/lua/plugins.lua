@@ -45,6 +45,10 @@ return require('packer').startup(function()
         end
     }
     use {
+        'nvim-lua/lsp_extensions.nvim',
+        requires = {{'neovim/nvim-lspconfig'}}
+    }
+    use {
         'hrsh7th/nvim-compe',
         config = function()
             require("config.compe")
