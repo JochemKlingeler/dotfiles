@@ -61,7 +61,11 @@ vnoremap ]v :action EditorSelectWord<cr>
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
 
-nnoremap <leader>f :action GotoClass<cr>
+nnoremap <leader>fa :action GotoAction<cr>
+nnoremap <leader>fe :action SearchEverywhere<cr>
+nnoremap <leader>fc :action GotoClass<cr>
+nnoremap <leader>ff :action GotoFile<cr>
+nnoremap <leader>fg :action FindInPath<cr>
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
