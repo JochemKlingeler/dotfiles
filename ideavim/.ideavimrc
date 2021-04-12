@@ -31,64 +31,64 @@ set idearefactormode=select
 ""map <leader>f <Plug>(easymotion-s)
 ""map <leader>e <Plug>(easymotion-f)
 
-noremap <leader>t :action RunClass<cr>
-noremap <leader>T :action RerunFailedTests<cr>
+nmap <leader>t <Action>(RunClass)
+nmap <leader>T <Action>(RerunFailedTests)
 
-""map <leader>d :action Debug<cr>
-noremap <leader>d :action DebugClass<cr>
-noremap <leader>r :action RenameElement<cr>
-noremap <leader>c :action Stop<cr>
-noremap <leader>z :action ToggleDistractionFreeMode<cr>
+""map <leader>d Action (Debug)
+nmap <leader>d <Action>(DebugClass)
+nmap <leader>r <Action>(RenameElement)
+nmap <leader>c <Action>(Stop)
+nmap <leader>z <Action>(ToggleDistractionFreeMode)
 
-noremap <leader>s :action SelectInProjectView<cr>
-noremap <leader>a :action Annotate<cr>
-noremap <leader>h :action Vcs.ShowTabbedFileHistory<cr>
-noremap <S-Space> :action GotoNextError<cr>
+nmap <leader>s <Action>(SelectInProjectView)
+nmap <leader>a <Action>(Annotate)
+nmap <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+nmap <S-Space> <Action>(GotoNextError)
 
-noremap <leader>b :action ToggleLineBreakpoint<cr>
-noremap <leader>o :action FileStructurePopup<cr>
+nmap <leader>b <Action>(ToggleLineBreakpoint)
+nmap <leader>o <Action>(FileStructurePopup)
 
 """ JetBeans actions ------------------------
-nnoremap [c :action VcsShowPrevChangeMarker<cr>
-nnoremap ]c :action VcsShowNextChangeMarker<cr>
-nnoremap [d :action GotoImplementation<cr>
-nnoremap ]d :action GotoSuperMethod<cr>
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [d <Action>(GotoImplementation)
+nmap ]d <Action>(GotoSuperMethod)
 
-vnoremap [v :action EditorUnSelectWord<cr>
-vnoremap ]v :action EditorSelectWord<cr>
+vmap [v <Action>(EditorUnSelectWord)
+vmap ]v <Action>(EditorSelectWord)
 
 "  Fix for Idea jumps not populating vim jumplist
-nnoremap <C-o> :action Back<cr>
-nnoremap <C-i> :action Forward<cr>
+nmap <C-o> <Action>(Back)
+"nmap <C-i> <Action>(Forward)
 
-nnoremap <leader>fa :action GotoAction<cr>
-nnoremap <leader>fe :action SearchEverywhere<cr>
-nnoremap <leader>fc :action GotoClass<cr>
-nnoremap <leader>ff :action GotoFile<cr>
-nnoremap <leader>fg :action FindInPath<cr>
+nmap <leader>fa <Action>(GotoAction)
+nmap <leader>fe <Action>(SearchEverywhere)
+nmap <leader>fc <Action>(GotoClass)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fg <Action>(FindInPath)
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
-inoremap <M-k> <Up>
-inoremap <M-j> <Down>
-inoremap <M-l> <Right>
-inoremap <M-h> <Left>
+imap <M-k> <Up>
+imap <M-j> <Down>
+imap <M-l> <Right>
+imap <M-h> <Left>
 
 "   Jetpack bind, a bit buggy here though
-" nnoremap <leader>l :ls <CR> :b <space>
-noremap <leader>p "0p
-noremap <leader>P "+p
+" nmap <leader>l :ls <CR> :b <space>
+nmap <leader>p "0p
+nmap <leader>P "+p
 "   CamelCase to snake_case
-noremap <leader>u :s/\(\u\)/_\l\1/g<cr>
+nmap <leader>u :s/\(\u\)/_\l\1/g<cr>
 "   snake_case to CamelCase
-noremap <leader>U :s/_\(\l\)/\u\1/g<cr>
+nmap <leader>U :s/_\(\l\)/\u\1/g<cr>
 
 """ unimpared -------------------------------
-nnoremap [<space> :action EditorStartNewLineBefore<cr>
-nnoremap ]<space> :action EditorStartNewLine<cr>
-nnoremap [e :action MoveLineUp<cr>
-nnoremap ]e :action MoveLineDown<cr>
-nnoremap [b :action PreviousTab<cr>
-nnoremap ]b :action NextTab<cr>
-nnoremap [B :action GoToTab1<cr>
-nnoremap ]B :action GoToLastTab<cr>
+nmap [<space> <Action>(EditorStartNewLineBefore)
+nmap ]<space> <Action>(EditorStartNewLine)
+nmap [e <Action>(MoveLineUp)
+nmap ]e <Action>(MoveLineDown)
+nmap [b <Action>(PreviousTab)
+nmap ]b <Action>(NextTab)
+nmap [B <Action>(GoToTab1)
+nmap ]B <Action>(GoToLastTab)
