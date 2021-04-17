@@ -80,5 +80,13 @@ return require('packer').startup(function()
             {'p00f/nvim-ts-rainbow'},
         }
     }
+
+    -- Statusline
+    use { 
+        'hoob3rt/lualine.nvim',
+        config = function ()
+            require("config.lualine")
+        end
+    }
 end)
 
