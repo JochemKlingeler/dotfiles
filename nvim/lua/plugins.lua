@@ -15,7 +15,15 @@ return require('packer').startup(function()
     use { 'tpope/vim-commentary' }
 
     -- Git gutter
-    use { 'airblade/vim-gitgutter' }
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require("config.gitsigns")
+        end
+    }
 
     -- Colorscheme
     use {

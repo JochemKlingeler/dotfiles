@@ -29,6 +29,22 @@ utils.map('i', '<M-l>', '<Right>')
 -- if > in function
 -- ac > after class
 -- ic > in class
+--
+
+function keymappings.mapGitSigns()
+    utils.map('n', ']c', "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'", { expr = true })
+    utils.map('n', '[c', "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'", { expr = true })
+
+    utils.map('o', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
+    utils.map('x', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
+
+    utils.map('n', '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk()<CR>')
+    utils.map('n', '<leader>hu', '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>')
+    utils.map('n', '<leader>hr', '<cmd>lua require"gitsigns".reset_hunk()<CR>')
+    utils.map('n', '<leader>hR', '<cmd>lua require"gitsigns".reset_buffer()<CR>')
+    utils.map('n', '<leader>hp', '<cmd>lua require"gitsigns".preview_hunk()<CR>')
+    utils.map('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line()<CR>')
+end
 
 function keymappings.mapLsp(bufnr)
     local opts = { noremap=true, silent=true }
