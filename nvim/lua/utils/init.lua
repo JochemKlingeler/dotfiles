@@ -10,6 +10,11 @@ function utils.map(mode, lhs, rhs, opts)
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+function utils.buf_map(bufnr, mode, lhs, rhs, opts)
+    local options = {noremap = true}
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
+end
 
 -- Stolen from:
 -- https://github.com/norcalli/nvim_utils/blob/master/lua/nvim_utils.lua
