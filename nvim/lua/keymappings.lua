@@ -93,25 +93,50 @@ whichkey.register({
         f = "Function",
         F = "Function (to end)",
     },
-    a = {
-        name = "After ...",
-        c = "Class",
-        h = "Hunk {git}",
-        m = "Method",
+    c = {
+        a = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
+        i = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
+    },
+    d = {
+        a = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
+        i = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
     },
     g = {
         name = "Go (to) ...",
+        c = "Toggle comment",
         d = "Definition",
         D = "Declaration",
         i = "Implementation",
         r = "References",
     },
     K = "Preview",
-    i = {
-        name = "In ...",
-        c = "Class",
-        h = "Hunk {git}",
-        m = "Method",
+    v = {
+        a = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
+        i = {
+            c = "Class",
+            h = "Hunk {git}",
+            m = "Method",
+        },
     },
 })
 
