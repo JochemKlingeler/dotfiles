@@ -13,37 +13,21 @@ utils.map('i', '<M-j>', '<Down>')
 utils.map('i', '<M-k>', '<Up>')
 utils.map('i', '<M-l>', '<Right>')
 
--- Treesitter bindings
--- -- Go to function/methods
--- ]m > next function
--- [m > previous function
--- ]M > next function (to end)
--- [M > previous function (to end)
--- -- Go to class
--- ]] > class end
--- ][ > class end (to start)
--- [ [ > class start
--- [] > class start (to end)
--- -- select
--- af > after function
--- if > in function
--- ac > after class
--- ic > in class
---
-
 function keymappings.mapGitSigns()
     utils.map('n', ']c', "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'", { expr = true })
     utils.map('n', '[c', "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'", { expr = true })
 
     utils.map('o', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
     utils.map('x', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
+    utils.map('o', 'ah', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
+    utils.map('x', 'ah', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
 
-    utils.map('n', '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk()<CR>')
-    utils.map('n', '<leader>hu', '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>')
+    utils.map('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line()<CR>')
+    utils.map('n', '<leader>hp', '<cmd>lua require"gitsigns".preview_hunk()<CR>')
     utils.map('n', '<leader>hr', '<cmd>lua require"gitsigns".reset_hunk()<CR>')
     utils.map('n', '<leader>hR', '<cmd>lua require"gitsigns".reset_buffer()<CR>')
-    utils.map('n', '<leader>hp', '<cmd>lua require"gitsigns".preview_hunk()<CR>')
-    utils.map('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line()<CR>')
+    utils.map('n', '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk()<CR>')
+    utils.map('n', '<leader>hu', '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>')
 end
 
 function keymappings.mapLsp(bufnr)
@@ -55,14 +39,14 @@ function keymappings.mapLsp(bufnr)
     utils.buf_map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     utils.buf_map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     utils.buf_map(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    utils.buf_map(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    utils.buf_map(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    utils.buf_map(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    utils.buf_map(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- Telescope does references
     --utils.buf_map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    utils.buf_map(bufnr, 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    utils.buf_map(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     utils.buf_map(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     utils.buf_map(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    --utils.buf_map('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    --utils.buf_map('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
 function keymappings.mapTelescope()
@@ -70,13 +54,13 @@ function keymappings.mapTelescope()
     utils.map('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
     utils.map('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
     utils.map('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-    utils.map('n', '<Leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+    utils.map('n', '<Leader>ft', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
     utils.map('n', '<Leader>fa', [[<cmd>lua require('telescope.builtin').builtin()<CR>]])
 
     -- Git
-    utils.map('n', '<Leader>fis', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
-    utils.map('n', '<Leader>fib', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-    utils.map('n', '<Leader>fic', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
+    utils.map('n', '<Leader>fhs', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
+    utils.map('n', '<Leader>fhb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
+    utils.map('n', '<Leader>fhc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
 
     -- LSP
     utils.map('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]])
@@ -86,5 +70,89 @@ function keymappings.mapTelescope()
     utils.map('n', '<Leader>cd', [[<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<CR>]])
     utils.map('n', '<Leader>cD', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]])
 end
+
+local whichkey = require("which-key")
+
+-- normal bindings
+whichkey.register({
+    ["["] = {
+        name = "Previous ...",
+        ["["] = "Class start",
+        ["]"] = "Class start (to end)",
+        c = "Change {git}",
+        d = "Diagnostic",
+        f = "Function",
+        F = "Function (to end)",
+    },
+    ["]"] = {
+        name = "Next ...",
+        ["["] = "Class end",
+        ["]"] = "Class end (to end)",
+        c = "Change {git}",
+        d = "Diagnostic",
+        f = "Function",
+        F = "Function (to end)",
+    },
+    a = {
+        name = "After ...",
+        c = "Class",
+        h = "Hunk {git}",
+        m = "Method",
+    },
+    g = {
+        name = "Go (to) ...",
+        d = "Definition",
+        D = "Declaration",
+        i = "Implementation",
+        r = "References",
+    },
+    K = "Preview",
+    i = {
+        name = "In ...",
+        c = "Class",
+        h = "Hunk {git}",
+        m = "Method",
+    },
+})
+
+-- Leader bindings
+whichkey.register({
+    c = {
+        name = "Language server",
+        a = "Code Actions",
+        d = "Document Diagnostics",
+        D = "Workspace Diagnostics",
+    },
+    D = "Type Definition",
+    e = "Show line diagnostic",
+    h = {
+        name = "Git",
+        D = "Workspace Diagnostics",
+        R = "Reset buffer",
+        a = "Code Actions",
+        b = "Blame line",
+        d = "Document Diagnostics",
+        p = "Preview hunk",
+        r = "Reset hunk",
+        s = "Stage hunk",
+        u = "Undo hunk",
+    },
+    f = {
+        name = "Telescope, fuzzy finder",
+        a = "All Telescope lists",
+        b = "Finder Buffers",
+        f = "Find Files",
+        g = "Live Grep",
+        t = "Help Tags",
+        h = {
+            name = "Git",
+            b = "Git Branches",
+            c = "Git Commits",
+            s = "Git Status",
+        }
+    },
+    r = "Rename",
+}, { prefix = "<leader>" })
+
 
 return keymappings

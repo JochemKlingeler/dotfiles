@@ -90,10 +90,19 @@ return require('packer').startup(function()
     }
 
     -- Statusline
-    use { 
+    use {
         'hoob3rt/lualine.nvim',
         config = function ()
             require("config.lualine")
+        end
+    }
+
+    -- Which key, lists shortcuts, config is listed in keybindings
+    use {
+        "folke/which-key.nvim",
+        config = function ()
+            -- Use default settings
+            require("which-key").setup {}
         end
     }
 end)

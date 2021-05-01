@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { "rust", "lua" },
+    ensure_installed = { "rust" },
     highlight = { enable = true },
     rainbow = { enable = true },
     refactor = {
@@ -10,19 +10,19 @@ require('nvim-treesitter.configs').setup {
         move = {
             enable = true,
             goto_next_start = {
-                ["]m"] = "@function.outer",
+                ["]F"] = "@function.outer",
                 ["]]"] = "@class.outer",
             },
             goto_next_end = {
-                ["]M"] = "@function.outer",
+                ["]F"] = "@function.outer",
                 ["]["] = "@class.outer",
             },
             goto_previous_start = {
-                ["[m"] = "@function.outer",
+                ["[f"] = "@function.outer",
                 ["[["] = "@class.outer",
             },
             goto_previous_end = {
-                ["[M"] = "@function.outer",
+                ["[f"] = "@function.outer",
                 ["[]"] = "@class.outer",
             },
         },
