@@ -27,6 +27,12 @@ return require('packer').startup(function()
 
     -- Colorscheme
     use {
+        'tjdevries/colorbuddy.nvim',
+        config = function()
+            require("config.colorscheme")
+        end
+    }
+    use {
         'bkegley/gloombuddy',
         requires = {{'tjdevries/colorbuddy.nvim'}}
     }
