@@ -21,17 +21,11 @@ return require('packer').startup(function()
             'nvim-lua/plenary.nvim'
         },
         config = function()
-            require("config.gitsigns")
+            require('config.gitsigns')
         end
     }
 
     -- Colorscheme
-    use {
-        'tjdevries/colorbuddy.nvim',
-        config = function()
-            require("config.colorscheme")
-        end
-    }
     use {
         'bkegley/gloombuddy',
         requires = {{'tjdevries/colorbuddy.nvim'}}
@@ -49,7 +43,7 @@ return require('packer').startup(function()
     use {
         'neovim/nvim-lspconfig',
         config = function()
-            require("lsp_lua")
+            require('lsp_lua')
         end
     }
     use {
@@ -59,7 +53,7 @@ return require('packer').startup(function()
     use {
         'hrsh7th/nvim-compe',
         config = function()
-            require("config.compe")
+            require('config.compe')
         end
     }
 
@@ -67,7 +61,7 @@ return require('packer').startup(function()
     use {
         'nvim-telescope/telescope.nvim',
         config = function ()
-            require("config.telescope")
+            require('config.telescope')
         end,
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
@@ -77,7 +71,7 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function ()
-            require("config.treesitter")
+            require('config.treesitter')
         end,
         requires = {
             --- Highlight definitions, navigation and rename poowered by treesitter
@@ -93,17 +87,23 @@ return require('packer').startup(function()
     use {
         'hoob3rt/lualine.nvim',
         config = function ()
-            require("config.lualine")
+            require('config.lualine')
         end
     }
 
     -- Which key, lists shortcuts, config is listed in keybindings
     use {
-        "folke/which-key.nvim",
+        'folke/which-key.nvim',
         config = function ()
             -- Use default settings
-            require("which-key").setup {}
+            require('which-key').setup {}
         end
+    }
+
+    -- Show ident line
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        branch = 'lua'
     }
 end)
 
