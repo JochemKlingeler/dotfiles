@@ -14,6 +14,15 @@ return require('packer').startup(function()
     -- Comment with `gc`
     use { 'tpope/vim-commentary' }
 
+    -- `f` and `t` highlighting
+    use {
+        'unblevable/quick-scope',
+        config = function()
+            vim.cmd("let g:qs_lazy_highlight = 1")
+            vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
+        end
+    }
+
     -- Git gutter
     use {
         'lewis6991/gitsigns.nvim',
