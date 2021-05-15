@@ -1,9 +1,6 @@
 require('lualine').setup {
     options = {
-        theme = 'nord',
-        icons_enabled = false,
-        section_separators = '',
-        component_separators = ''
+        theme = 'nord'
     },
     sections = {
         lualine_a = { {'mode', upper = true} },

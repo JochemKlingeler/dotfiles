@@ -38,6 +38,9 @@ utils.opt('o', 'signcolumn', 'auto:4')
 utils.opt('o', 'list', true)
 utils.opt('o', 'listchars', 'tab:→ ,trail:·,extends:◣,precedes:◢')
 
+-- Set font
+utils.opt('o', 'guifont', 'CaskaydiaCove NF:h15')
+
 -- Highlist on yank
 vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
 

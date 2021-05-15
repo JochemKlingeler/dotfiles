@@ -62,6 +62,8 @@ return require('packer').startup(function()
             require('config.compe')
         end
     }
+    -- Adds missing LSP diagnostics highlights
+    use { 'folke/lsp-colors.nvim' }
 
     -- Telescope
     use {
@@ -92,6 +94,7 @@ return require('packer').startup(function()
     -- Statusline
     use {
         'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
         config = function ()
             require('config.lualine')
         end
