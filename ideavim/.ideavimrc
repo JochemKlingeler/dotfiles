@@ -11,6 +11,7 @@ set textobj-entire
 set ReplaceWithRegister
 set highlightedyank
 set NERDTree
+set vim-paragraph-motion
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>,{:}"
