@@ -35,23 +35,11 @@ return require('packer').startup(function()
     }
 
     -- Colorscheme
-    use {
-        'tjdevries/colorbuddy.nvim',
+use {
+        'shaunsingh/nord.nvim',
         config = function()
             require("config.colorscheme")
         end
-    }
-    use {
-        'bkegley/gloombuddy',
-        requires = {{'tjdevries/colorbuddy.nvim'}}
-    }
-    use {
-        'tjdevries/gruvbuddy.nvim',
-        requires = {{'tjdevries/colorbuddy.nvim'}}
-    }
-    use {
-        'maaslalani/nordbuddy',
-        requires = {{'tjdevries/colorbuddy.nvim'}}
     }
 
     -- LSP
