@@ -69,6 +69,28 @@ function keymappings.mapTelescope()
     utils.map('v', '<Leader>ca', [[<cmd>lua require('telescope.builtin').lsp_range_code_actions()<CR>]])
     utils.map('n', '<Leader>cd', [[<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<CR>]])
     utils.map('n', '<Leader>cD', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]])
+
+    -- Trouble
+    local actions = require('telescope.actions')
+    local trouble = require('trouble.providers.telescope')
+    local telescope = require('telescope')
+    telescope.setup {
+        defaults = {
+            mappings = {
+                i = { ['<c-t>'] = trouble.open_with_trouble },
+                n = { ['<c-t>'] = trouble.open_with_trouble },
+            },
+        },
+    }
+end
+
+function keymappings.mapTrouble()
+    utils.map('n', '<Leader>xx', [[<cmd>Trouble<cr>]])
+    utils.map('n', '<Leader>xw', [[<cmd>Trouble lsp_workspace_diagnostics<cr>]])
+    utils.map('n', '<Leader>xd', [[<cmd>Trouble lsp_document_diagnostics<cr>]])
+    utils.map('n', '<Leader>xl', [[<cmd>Trouble loclist<cr>]])
+    utils.map('n', '<Leader>xq', [[<cmd>Trouble quickfix<cr>]])
+    utils.map('n', '<Leader>xR', [[<cmd>Trouble lsp_references<cr>]])
 end
 
 local whichkey = require("which-key")
@@ -176,8 +198,17 @@ whichkey.register({
             s = "Git Status",
         }
     },
-    r = "Rename",
-}, { prefix = "<leader>" })
+    r = 'Rename',
+    x = {
+        name = 'Trouble',
+        R = 'LSP References',
+        d = 'Document diagnostics',
+        l = 'Loclist',
+        q = 'Quickfix',
+        w = 'Workspace diagnostics',
+        x = 'Trouble',
+    }
+}, { prefix = '<leader>' })
 
 
 return keymappings
