@@ -24,7 +24,12 @@ local autoccmds = {
             .. [[ *.rs ]] 
             .. [[lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }]]
         };
-    }
+    },
+    lsp_rust_autoformat_on_write = {
+        {
+            [[BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+        };
+    },
 }
 
 local utils = require('utils')
