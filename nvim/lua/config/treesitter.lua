@@ -3,7 +3,7 @@ require('nvim-treesitter.configs').setup {
     highlight = { enable = true },
     rainbow = { enable = true },
     refactor = {
-        highlight_current_scope = {enable = true},
+        highlight_current_scope = {enable = false},
         highlight_definitions = {enable = true},
     },
     textobjects = {
