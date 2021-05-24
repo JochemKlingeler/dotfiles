@@ -14,20 +14,20 @@ utils.map('i', '<M-k>', '<Up>')
 utils.map('i', '<M-l>', '<Right>')
 
 function keymappings.mapGitSigns()
-    utils.map('n', ']c', "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'", { expr = true })
-    utils.map('n', '[c', "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'", { expr = true })
+    utils.map('n', ']c', [[&diff ? ']c' : '<cmd>lua require"gitsigns".next_hunk()<CR>']], { expr = true })
+    utils.map('n', '[c', [[&diff ? '[c' : '<cmd>lua require"gitsigns".prev_hunk()<CR>']], { expr = true })
 
-    utils.map('o', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
-    utils.map('x', 'ih', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
-    utils.map('o', 'ah', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
-    utils.map('x', 'ah', ':<C-U>lua require"gitsigns".select_hunk()<CR>')
+    utils.map('o', 'ih', [[:<C-U>lua require'gitsigns'.select_hunk()<CR>]])
+    utils.map('x', 'ih', [[:<C-U>lua require'gitsigns'.select_hunk()<CR>]])
+    utils.map('o', 'ah', [[:<C-U>lua require'gitsigns'.select_hunk()<CR>]])
+    utils.map('x', 'ah', [[:<C-U>lua require'gitsigns'.select_hunk()<CR>]])
 
-    utils.map('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line()<CR>')
-    utils.map('n', '<leader>hp', '<cmd>lua require"gitsigns".preview_hunk()<CR>')
-    utils.map('n', '<leader>hr', '<cmd>lua require"gitsigns".reset_hunk()<CR>')
-    utils.map('n', '<leader>hR', '<cmd>lua require"gitsigns".reset_buffer()<CR>')
-    utils.map('n', '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk()<CR>')
-    utils.map('n', '<leader>hu', '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>')
+    utils.map('n', '<leader>hb', [[<cmd>lua require'gitsigns'.blame_line()<CR>]])
+    utils.map('n', '<leader>hp', [[<cmd>lua require'gitsigns'.preview_hunk()<CR>]])
+    utils.map('n', '<leader>hr', [[<cmd>lua require'gitsigns'.reset_hunk()<CR>]])
+    utils.map('n', '<leader>hR', [[<cmd>lua require'gitsigns'.reset_buffer()<CR>]])
+    utils.map('n', '<leader>hs', [[<cmd>lua require'gitsigns'.stage_hunk()<CR>]])
+    utils.map('n', '<leader>hu', [[<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>]])
 end
 
 function keymappings.mapLsp(bufnr)
@@ -93,71 +93,71 @@ function keymappings.mapTrouble()
     utils.map('n', '<Leader>xR', [[<cmd>Trouble lsp_references<cr>]])
 end
 
-local whichkey = require("which-key")
+local whichkey = require('which-key')
 
 -- normal bindings
 whichkey.register({
-    ["["] = {
-        name = "Previous ...",
-        ["["] = "Class start",
-        ["]"] = "Class start (to end)",
-        c = "Change {git}",
-        d = "Diagnostic",
-        f = "Function",
-        F = "Function (to end)",
+    ['['] = {
+        name = 'Previous ...',
+        ['['] = 'Class start',
+        [']'] = 'Class start (to end)',
+        c = 'Change {git}',
+        d = 'Diagnostic',
+        f = 'Function',
+        F = 'Function (to end)',
     },
-    ["]"] = {
-        name = "Next ...",
-        ["["] = "Class end",
-        ["]"] = "Class end (to end)",
-        c = "Change {git}",
-        d = "Diagnostic",
-        f = "Function",
-        F = "Function (to end)",
+    [']'] = {
+        name = 'Next ...',
+        ['['] = 'Class end',
+        [']'] = 'Class end (to end)',
+        c = 'Change {git}',
+        d = 'Diagnostic',
+        f = 'Function',
+        F = 'Function (to end)',
     },
     c = {
         a = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
         i = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
     },
     d = {
         a = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
         i = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
     },
     g = {
-        name = "Go (to) ...",
-        c = "Toggle comment",
-        d = "Definition",
-        D = "Declaration",
-        i = "Implementation",
-        r = "References",
+        name = 'Go (to) ...',
+        c = 'Toggle comment',
+        d = 'Definition',
+        D = 'Declaration',
+        i = 'Implementation',
+        r = 'References',
     },
-    K = "Preview",
+    K = 'Preview',
     v = {
         a = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
         i = {
-            c = "Class",
-            h = "Hunk {git}",
-            m = "Method",
+            c = 'Class',
+            h = 'Hunk {git}',
+            m = 'Method',
         },
     },
 })
@@ -165,37 +165,37 @@ whichkey.register({
 -- Leader bindings
 whichkey.register({
     c = {
-        name = "Language server",
-        a = "Code Actions",
-        d = "Document Diagnostics",
-        D = "Workspace Diagnostics",
+        name = 'Language server',
+        a = 'Code Actions',
+        d = 'Document Diagnostics',
+        D = 'Workspace Diagnostics',
     },
-    D = "Type Definition",
-    e = "Show line diagnostic",
+    D = 'Type Definition',
+    e = 'Show line diagnostic',
     h = {
-        name = "Git",
-        D = "Workspace Diagnostics",
-        R = "Reset buffer",
-        a = "Code Actions",
-        b = "Blame line",
-        d = "Document Diagnostics",
-        p = "Preview hunk",
-        r = "Reset hunk",
-        s = "Stage hunk",
-        u = "Undo hunk",
+        name = 'Git',
+        D = 'Workspace Diagnostics',
+        R = 'Reset buffer',
+        a = 'Code Actions',
+        b = 'Blame line',
+        d = 'Document Diagnostics',
+        p = 'Preview hunk',
+        r = 'Reset hunk',
+        s = 'Stage hunk',
+        u = 'Undo hunk',
     },
     f = {
-        name = "Telescope, fuzzy finder",
-        a = "All Telescope lists",
-        b = "Finder Buffers",
-        f = "Find Files",
-        g = "Live Grep",
-        t = "Help Tags",
+        name = 'Telescope, fuzzy finder',
+        a = 'All Telescope lists',
+        b = 'Finder Buffers',
+        f = 'Find Files',
+        g = 'Live Grep',
+        t = 'Help Tags',
         h = {
-            name = "Git",
-            b = "Git Branches",
-            c = "Git Commits",
-            s = "Git Status",
+            name = 'Git',
+            b = 'Git Branches',
+            c = 'Git Commits',
+            s = 'Git Status',
         }
     },
     r = 'Rename',

@@ -18,7 +18,7 @@ return require('packer').startup(function()
     use {
         'unblevable/quick-scope',
         config = function()
-            vim.cmd("let g:qs_lazy_highlight = 1")
+            vim.cmd('let g:qs_lazy_highlight = 1')
             vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
         end
     }
@@ -35,10 +35,10 @@ return require('packer').startup(function()
     }
 
     -- Colorscheme
-use {
+    use {
         'shaunsingh/nord.nvim',
         config = function()
-            require("config.colorscheme")
+            require('config.colorscheme')
         end
     }
 
