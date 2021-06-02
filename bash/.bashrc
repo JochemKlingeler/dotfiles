@@ -9,3 +9,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Enable vi mode
 set -o vi
+
+# Enable debugger
+alias phpd='XDEBUG_CONFIG="idekey=docker" php'
