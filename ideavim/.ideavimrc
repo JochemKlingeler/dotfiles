@@ -23,6 +23,7 @@ set relativenumber
 set number
 set ignorecase
 set smartcase
+set noerrorbells
 
 """ Idea specific settings ------------------
 set ideajoin
@@ -60,13 +61,15 @@ vmap ]v <Action>(EditorSelectWord)
 
 "  Fix for Idea jumps not populating vim jumplist
 nmap <C-o> <Action>(Back)
-"nmap <C-i> <Action>(Forward)
+nmap <C-i> <Action>(Forward)
 
 nmap <leader>fa <Action>(GotoAction)
 nmap <leader>fe <Action>(SearchEverywhere)
 nmap <leader>fc <Action>(GotoClass)
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>fg <Action>(FindInPath)
+
+nmap <leader>w <Action>(HideAllWindows)
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
