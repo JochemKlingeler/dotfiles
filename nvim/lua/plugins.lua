@@ -121,9 +121,6 @@ return require('packer').startup(function()
     }
 
     -- Show ident line
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        branch = 'lua'
-    }
+    use { 'lukas-reineke/indent-blankline.nvim' }
 end)
 
