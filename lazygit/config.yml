@@ -1,0 +1,10 @@
+os:
+  editCommand: 'nvim'
+  editCommandTemplate: '{{editor}} +{{line}} {{filename}}'
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
+
