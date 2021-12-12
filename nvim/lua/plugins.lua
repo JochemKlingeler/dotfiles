@@ -49,16 +49,16 @@ return require('packer').startup(function()
             require('lsp_lua')
         end
     }
-    use {
-        'nvim-lua/lsp_extensions.nvim',
-        requires = {{'neovim/nvim-lspconfig'}}
-    }
+
+    -- completion
     use {
         'hrsh7th/nvim-compe',
         config = function()
             require('config.compe')
         end
     }
+
+    -- fix table
     use {
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
