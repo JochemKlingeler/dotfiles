@@ -3,7 +3,21 @@ local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    require('keymappings').mapLsp(bufnr)
+    require('which-key').register({
+        K = {'<cmd>lua vim.lsp.buf.hover()<CR>' , 'Preview'},
+        gD = {'<cmd>lua vim.lsp.buf.declaration()<CR>' , 'Declaration'},
+        -- Handled by telescope instead
+        --gd = {'<cmd>lua vim.lsp.buf.definition()<CR>' , 'Definition'},
+        gi = {'<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation'},
+        -- Handled by telescope instead
+        --gr = {'<cmd>lua vim.lsp.buf.references()<CR>', 'References'},
+        ['<C-k>'] = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Help'},
+        ['<leader>D'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition'},
+        ['<leader>r'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        ['<leader>e'] = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line diagnostics'},
+        ['[d'] = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Previous diagnostic'},
+        [']d'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Next diagnostic'},
+    }, { buffer = bufnr })
 end
 
 nvim_lsp.rust_analyzer.setup {

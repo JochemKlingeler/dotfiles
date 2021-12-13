@@ -2,17 +2,34 @@ return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    -- Vim surround, a feature so usefull it should be included by default
+    -- Which key, lists shortcuts, config is listed in keybindings
     use {
-        'tpope/vim-surround',
-        requires = {{'tpope/vim-repeat'}}
+        'folke/which-key.nvim',
+        config = function ()
+            -- Use default settings
+            require('which-key').setup {}
+        end
     }
-
+    -- Framework for allowing other packages to have repeatable actions `.`
+    use {'tpope/vim-repeat'}
     -- Superpowered substitute
     use { 'tpope/vim-abolish' }
 
+    -- Vim surround, a feature so usefull it should be included by default
+    use {
+        'machakann/vim-sandwich',
+        config = function()
+            require('config.surround')
+        end
+    }
+
     -- Comment with `gc`
-    use { 'tpope/vim-commentary' }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('config.commentary')
+        end
+    }
 
     -- `f` and `t` highlighting
     use {
@@ -63,13 +80,7 @@ return require('packer').startup(function()
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
         config = function()
-            require('trouble').setup {
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-            }
-            local keymap = require('keymappings')
-            keymap.mapTrouble()
+            require('config.trouble')
         end
     }
 
@@ -108,15 +119,6 @@ return require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons', opt = true},
         config = function ()
             require('config.lualine')
-        end
-    }
-
-    -- Which key, lists shortcuts, config is listed in keybindings
-    use {
-        'folke/which-key.nvim',
-        config = function ()
-            -- Use default settings
-            require('which-key').setup {}
         end
     }
 
