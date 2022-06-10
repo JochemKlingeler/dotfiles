@@ -1,0 +1,76 @@
+""" Common settings -------------------------
+set scrolloff=5
+set relativenumber
+set number
+set ignorecase
+set smartcase
+
+""" Map leader to space ---------------------
+let mapleader=" "
+
+" Fix navigation
+nnoremap <C-o> :vsc View.NavigateBackward<cr>
+nnoremap <C-i> :vsc View.NavigateForward<cr>
+
+" Go to implementagion
+nnoremap gD :vsc Edit.GoToImplementation<cr>
+
+" find references
+nnoremap gi :vsc Edit.FindAllReferences<cr>
+
+" Format document
+nnoremap Q :vsc Edit.FormatDocument<cr>
+
+" Navigate tabs
+nnoremap ]b gt
+nnoremap [b gT
+
+"  Escape
+inoremap jj <Esc>
+
+"  Add some movement to insertmode
+inoremap <M-k> <Up>
+inoremap <M-j> <Down>
+inoremap <M-l> <Right>
+inoremap <M-h> <Left>
+
+"  Fix some dropdown navigations
+noremap <C-n> <Down>
+noremap <C-p> <Up>
+
+"  Clear highlights
+nnoremap <C-l> <cmd>noh<CR>
+
+" Comment
+xnoremap gc :vsc Edit.CommentSelection<cr>
+nnoremap gcc V:vsc Edit.CommentSelection<cr>
+
+" Version control
+nnoremap ]c :vsc Diff.NextDifference<cr>
+nnoremap [c :vsc Diff.PreviousDifference<cr>
+"    Sadly broken
+" nnoremap ]c :vsc GitDiffMargin.NextChange<cr>
+" nnoremap [c :vsc GitDiffMargin.PreviousChange<cr>
+" nnoremap <leader>c :vsc GitDiffMargin.ShowPopup<cr>
+
+nnoremap K :vsc Edit.QuickInfo<cr>
+
+" Navigate errors
+nnoremap ]e :vsc View.NextError<CR>
+nnoremap [e :vsc View.PreviousError<CR>
+nnoremap ]E :vsc Edit.GoToNextLocation<CR>
+nnoremap [E :vsc Edit.GoToPreviousLocation<CR>
+
+" Debugging
+nnoremap <leader>b :vsc Debug.ToggleBreakpoint<cr>
+
+" Rename
+nnoremap <leader>r :vsc Refactor.Rename<cr>
+
+" Select file in solution explorer
+nnoremap <leader>s :vsc CodeMaid.FindInSolutionExplorer<cr>
+
+" Delete word back
+inoremap <C-w> <C-o>db
+inoremap <C-BS> <C-o>db
+inoremap <C-Del> <C-o>dw
