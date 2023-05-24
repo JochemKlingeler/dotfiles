@@ -3,43 +3,48 @@ let mapleader=" "
 
 """ Plugins  --------------------------------
 set surround
-""" set multiple-cursors
 set commentary
 set argtextobj
 set exchange
-set textobj-entire
-set ReplaceWithRegister
 set highlightedyank
 set NERDTree
 set vim-paragraph-motion
 set matchit
+set which-key
+set quickscope
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>,{:}"
 
+""" WhichKey settings -----------------------
+set timeoutlen=5000
+let g:WhichKey_ShowVimActions="true"
+let g:WhichKey_DefaultDelay=100
+let g:WhichKey_ShowTypedSequence="true"
+
 """ Common settings -------------------------
 set showmode
-set scrolloff=5
+set showcmd
+set scrolloff=10
 set relativenumber
 set number
 set ignorecase
 set smartcase
-set noerrorbells
+set visualbell
 
 """ Idea specific settings ------------------
 set ideajoin
 set idearefactormode=select
 
-"   Beta feature: Enable :normal, one-step-undo
-"   https://youtrack.jetbrains.com/issue/VIM-830#focus=Comments-27-5641084.0-0
-set noideadelaymacro
+""" JetBeans actions ------------------------
+nmap <leader>k <Action>(ShowErrorDescription)
 
-""" Mappings --------------------------------
 nmap <leader>t <Action>(RunClass)
 nmap <leader>T <Action>(RerunFailedTests)
 
 nmap <leader>d <Action>(DebugClass)
 nmap <leader>r <Action>(RenameElement)
+nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 nmap <leader>c <Action>(Stop)
 nmap <leader>z <Action>(ToggleDistractionFreeMode)
 
@@ -50,8 +55,8 @@ nmap <S-Space> <Action>(GotoNextError)
 
 nmap <leader>b <Action>(ToggleLineBreakpoint)
 nmap <leader>o <Action>(FileStructurePopup)
+imap <M-p> <Action>(ParameterInfo)
 
-""" JetBeans actions ------------------------
 nmap [c <Action>(VcsShowPrevChangeMarker)
 nmap ]c <Action>(VcsShowNextChangeMarker)
 nmap [d <Action>(GotoImplementation)
@@ -60,7 +65,7 @@ nmap ]d <Action>(GotoSuperMethod)
 vmap [v <Action>(EditorUnSelectWord)
 vmap ]v <Action>(EditorSelectWord)
 
-"  Fix for Idea jumps not populating vim jumplist
+"  Fix for Idea jumps not populating vim jumplist "
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
@@ -68,7 +73,9 @@ nmap <leader>fa <Action>(GotoAction)
 nmap <leader>fe <Action>(SearchEverywhere)
 nmap <leader>fc <Action>(GotoClass)
 nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fr <Action>(RecentFiles)
 nmap <leader>fg <Action>(FindInPath)
+let g:WichKeyDesc_find="<leader>f Find..."
 
 nmap <leader>w <Action>(HideAllWindows)
 
@@ -83,13 +90,23 @@ imap <M-h> <Left>
 map Q gq
 
 "   Jetpack bind, a bit buggy here though
-nmap <leader>l :ls <CR> :b <space>
+"nmap <leader>l :ls <CR> :b <space>
+"let g:WichKey_Desc_jetpack="<leader>l jetpack"
+
+let g:WichKeyDesc_paste="<leader>p Paste from copy register"
 nmap <leader>p "0p
+let g:WichKeyDesc_system_paste="<leader>P Paste from system clipboard"
 nmap <leader>P "+p
 "   CamelCase to snake_case
 nmap <leader>u :s/\(\u\)/_\l\1/g<cr>
+let g:WichKeyDesc_to_snake_case="<leader>u To snake_case"
 "   snake_case to CamelCase
 nmap <leader>U :s/_\(\l\)/\u\1/g<cr>
+let g:WichKeyDesc_to_CamelCase="<leader>U To CamelCase"
+
+" Use tab to insert a single character
+nmap <tab> i_<Esc>r
+let g:WichKeyDesc_replace_single_char="<tab> Insert single char"
 
 """ unimpared -------------------------------
 nmap [<space> <Action>(EditorStartNewLineBefore)
@@ -97,6 +114,8 @@ nmap ]<space> <Action>(EditorStartNewLine)
 nmap [e <Action>(MoveLineUp)
 nmap ]e <Action>(MoveLineDown)
 nmap [b <Action>(PreviousTab)
+let g:WichKeyDesc_prev_tab="[b Goto previous tab"
 nmap ]b <Action>(NextTab)
+let g:WichKeyDesc_next_tab="]b Goto next tab"
 nmap [B <Action>(GoToTab1)
 nmap ]B <Action>(GoToLastTab)
