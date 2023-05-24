@@ -38,15 +38,21 @@ set idearefactormode=select
 
 """ JetBeans actions ------------------------
 nmap <leader>k <Action>(ShowErrorDescription)
+let g:WhichKeyDesc_showErrorDesc="<leader>k Show error description"
 
 nmap <leader>t <Action>(RunClass)
+let g:WhichKeyDesc_runTest="<leader>t Run test"
 nmap <leader>T <Action>(RerunFailedTests)
+let g:WhichKeyDesc_rerunFailedTest="<leader>T Rerun failed tests"
 
 nmap <leader>d <Action>(DebugClass)
 nmap <leader>r <Action>(RenameElement)
+let g:WhichKeyDesc_rename="<leader>r Rename element"
 nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
+let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
 nmap <leader>c <Action>(Stop)
 nmap <leader>z <Action>(ToggleDistractionFreeMode)
+let g:WhichKeyDesc_zen="<leader>z Toggle Zen mode"
 
 nmap <leader>s <Action>(SelectInProjectView)
 nmap <leader>a <Action>(Annotate)
@@ -57,10 +63,16 @@ nmap <leader>b <Action>(ToggleLineBreakpoint)
 nmap <leader>o <Action>(FileStructurePopup)
 imap <M-p> <Action>(ParameterInfo)
 
+let g:WhichKeyDesc_prev="<leader>[ Previous..."
+let g:WhichKeyDesc_next="<leader>] Next..."
 nmap [c <Action>(VcsShowPrevChangeMarker)
+let g:WhichKeyDesc_prevChange="<leader>[c Previous change"
 nmap ]c <Action>(VcsShowNextChangeMarker)
+let g:WhichKeyDesc_nextChange="<leader>]c Next change"
 nmap [d <Action>(GotoImplementation)
+let g:WhichKeyDesc_gotoImplementation="<leader>[d Go to implementation"
 nmap ]d <Action>(GotoSuperMethod)
+let g:WhichKeyDesc_gotoSuperMethod="<leader>]d Go to super-method"
 
 vmap [v <Action>(EditorUnSelectWord)
 vmap ]v <Action>(EditorSelectWord)
@@ -69,15 +81,22 @@ vmap ]v <Action>(EditorSelectWord)
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
+let g:WhichKeyDesc_find="<leader>f Find..."
 nmap <leader>fa <Action>(GotoAction)
+let g:WhichKeyDesc_findAction="<leader>fa Find action"
 nmap <leader>fe <Action>(SearchEverywhere)
+let g:WhichKeyDesc_findEverywhere="<leader>fe Find everywhere"
 nmap <leader>fc <Action>(GotoClass)
+let g:WhichKeyDesc_findClass="<leader>fc Find class"
 nmap <leader>ff <Action>(GotoFile)
+let g:WhichKeyDesc_findFile="<leader>ff Find file"
 nmap <leader>fr <Action>(RecentFiles)
+let g:WhichKeyDesc_findRecentFiles="<leader>fr Find in recent files"
 nmap <leader>fg <Action>(FindInPath)
-let g:WichKeyDesc_find="<leader>f Find..."
+let g:WhichKeyDesc_findInPath="<leader>fg Find in path"
 
 nmap <leader>w <Action>(HideAllWindows)
+let g:WhichKeyDesc_hideAllWindows="<leader>w Hide all windows"
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
@@ -93,29 +112,35 @@ map Q gq
 "nmap <leader>l :ls <CR> :b <space>
 "let g:WichKey_Desc_jetpack="<leader>l jetpack"
 
-let g:WichKeyDesc_paste="<leader>p Paste from copy register"
 nmap <leader>p "0p
-let g:WichKeyDesc_system_paste="<leader>P Paste from system clipboard"
+let g:WhichKeyDesc_paste="<leader>p Paste from copy register"
 nmap <leader>P "+p
+let g:WhichKeyDesc_system_paste="<leader>P Paste from system clipboard"
 "   CamelCase to snake_case
+let g:WhichKeyDesc_to_snake_case="<leader>u Convert line to snake_case"
 nmap <leader>u :s/\(\u\)/_\l\1/g<cr>
-let g:WichKeyDesc_to_snake_case="<leader>u To snake_case"
 "   snake_case to CamelCase
+let g:WhichKeyDesc_to_CamelCase="<leader>U Convert line To CamelCase"
 nmap <leader>U :s/_\(\l\)/\u\1/g<cr>
-let g:WichKeyDesc_to_CamelCase="<leader>U To CamelCase"
 
 " Use tab to insert a single character
 nmap <tab> i_<Esc>r
-let g:WichKeyDesc_replace_single_char="<tab> Insert single char"
+let g:WhichKeyDesc_replace_single_char="<tab> Insert single char"
 
 """ unimpared -------------------------------
 nmap [<space> <Action>(EditorStartNewLineBefore)
+let g:WhichKeyDesc_startNewLineBefore="[<space> Start new line before current"
 nmap ]<space> <Action>(EditorStartNewLine)
+let g:WhichKeyDesc_startNewLine="]<space> Start new line"
 nmap [e <Action>(MoveLineUp)
+let g:WhichKeyDesc_moveLineUp="[e Move line up"
 nmap ]e <Action>(MoveLineDown)
+let g:WhichKeyDesc_moveLineDown="]e Move line down"
 nmap [b <Action>(PreviousTab)
-let g:WichKeyDesc_prev_tab="[b Goto previous tab"
+let g:WhichKeyDesc_prevTab="[b Goto previous tab"
 nmap ]b <Action>(NextTab)
-let g:WichKeyDesc_next_tab="]b Goto next tab"
+let g:WhichKeyDesc_nextTab="]b Goto next tab"
 nmap [B <Action>(GoToTab1)
+let g:WhichKeyDesc_firstTab="[B Goto first tab"
 nmap ]B <Action>(GoToLastTab)
+let g:WhichKeyDesc_lastTab="]B Goto last tab"
