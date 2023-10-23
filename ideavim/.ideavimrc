@@ -38,65 +38,78 @@ set idearefactormode=select
 
 """ JetBeans actions ------------------------
 nmap <leader>k <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_showErrorDesc="<leader>k Show error description"
+let g:WhichKeyDesc_showErrorDesc="<leader>k show error description"
 
 nmap <leader>t <Action>(RunClass)
-let g:WhichKeyDesc_runTest="<leader>t Run test"
+let g:WhichKeyDesc_runTest="<leader>t run Test"
 nmap <leader>T <Action>(RerunFailedTests)
-let g:WhichKeyDesc_rerunFailedTest="<leader>T Rerun failed tests"
+let g:WhichKeyDesc_rerunFailedTest="<leader>T rerun failed Tests"
 
 nmap <leader>d <Action>(DebugClass)
+let g:WhichKeyDesc_debugClass="<leader>d Debug class"
 nmap <leader>r <Action>(RenameElement)
 let g:WhichKeyDesc_rename="<leader>r Rename element"
 nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
 nmap <leader>c <Action>(Stop)
+let g:WhichKeyDesc_stop="<leader>c stop"
 nmap <leader>z <Action>(ToggleDistractionFreeMode)
-let g:WhichKeyDesc_zen="<leader>z Toggle Zen mode"
+let g:WhichKeyDesc_zen="<leader>z toggle Zen mode"
 
 nmap <leader>s <Action>(SelectInProjectView)
+let g:WhichKeyDesc_selectInProjectView="<leader>s Select in project view"
 nmap <leader>a <Action>(Annotate)
+let g:WhichKeyDesc_annotate="<leader>a Annotate"
 nmap <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+let g:WhichKeyDesc_showTabbedFileHistory="<leader>h show tabbed file History"
 nmap <S-Space> <Action>(GotoNextError)
+let g:WhichKeyDesc_goToNextError="<S-Space> go to next error"
 
 nmap <leader>b <Action>(ToggleLineBreakpoint)
+let g:WhichKeyDesc_toggleLineBreakpoint="<leader>b toggle line Breakpoint"
 nmap <leader>o <Action>(FileStructurePopup)
+let g:WhichKeyDesc_fileStructurePopup="<leader>o file structure popup"
 imap <M-p> <Action>(ParameterInfo)
+let g:WhichKeyDesc_parameterInfo="<M-p> Parameter info"
 
-let g:WhichKeyDesc_prev="<leader>[ Previous..."
-let g:WhichKeyDesc_next="<leader>] Next..."
+let g:WhichKeyDesc_prev="[ Previous..."
+let g:WhichKeyDesc_next="] Next..."
+
 nmap [c <Action>(VcsShowPrevChangeMarker)
-let g:WhichKeyDesc_prevChange="<leader>[c Previous change"
+let g:WhichKeyDesc_prevChange="[c previous Change"
 nmap ]c <Action>(VcsShowNextChangeMarker)
-let g:WhichKeyDesc_nextChange="<leader>]c Next change"
+let g:WhichKeyDesc_nextChange="]c next Change"
 nmap [d <Action>(GotoImplementation)
-let g:WhichKeyDesc_gotoImplementation="<leader>[d Go to implementation"
+let g:WhichKeyDesc_gotoImplementation="[d go to implementation"
 nmap ]d <Action>(GotoSuperMethod)
-let g:WhichKeyDesc_gotoSuperMethod="<leader>]d Go to super-method"
+let g:WhichKeyDesc_gotoSuperMethod="]d go to super-method"
 
 vmap [v <Action>(EditorUnSelectWord)
+let g:WhichKeyDesc_unSelectWord="[v unselect word"
 vmap ]v <Action>(EditorSelectWord)
+let g:WhichKeyDesc_selectWord="]v select word"
 
 "  Fix for Idea jumps not populating vim jumplist "
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
 let g:WhichKeyDesc_find="<leader>f Find..."
+
 nmap <leader>fa <Action>(GotoAction)
-let g:WhichKeyDesc_findAction="<leader>fa Find action"
+let g:WhichKeyDesc_findAction="<leader>fa find Action"
 nmap <leader>fe <Action>(SearchEverywhere)
-let g:WhichKeyDesc_findEverywhere="<leader>fe Find everywhere"
+let g:WhichKeyDesc_findEverywhere="<leader>fe find Everywhere"
 nmap <leader>fc <Action>(GotoClass)
-let g:WhichKeyDesc_findClass="<leader>fc Find class"
+let g:WhichKeyDesc_findClass="<leader>fc find Class"
 nmap <leader>ff <Action>(GotoFile)
-let g:WhichKeyDesc_findFile="<leader>ff Find file"
+let g:WhichKeyDesc_findFile="<leader>ff find File"
 nmap <leader>fr <Action>(RecentFiles)
-let g:WhichKeyDesc_findRecentFiles="<leader>fr Find in recent files"
+let g:WhichKeyDesc_findRecentFiles="<leader>fr find in Recent files"
 nmap <leader>fg <Action>(FindInPath)
-let g:WhichKeyDesc_findInPath="<leader>fg Find in path"
+let g:WhichKeyDesc_findInPath="<leader>fg find in Path"
 
 nmap <leader>w <Action>(HideAllWindows)
-let g:WhichKeyDesc_hideAllWindows="<leader>w Hide all windows"
+let g:WhichKeyDesc_hideAllWindows="<leader>w hide all Windows"
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
@@ -117,11 +130,14 @@ let g:WhichKeyDesc_paste="<leader>p Paste from copy register"
 nmap <leader>P "+p
 let g:WhichKeyDesc_system_paste="<leader>P Paste from system clipboard"
 "   CamelCase to snake_case
-let g:WhichKeyDesc_to_snake_case="<leader>u Convert line to snake_case"
 nmap <leader>u :s/\(\u\)/_\l\1/g<cr>
+let g:WhichKeyDesc_to_snake_case="<leader>u convert line to snake_case"
 "   snake_case to CamelCase
-let g:WhichKeyDesc_to_CamelCase="<leader>U Convert line To CamelCase"
 nmap <leader>U :s/_\(\l\)/\u\1/g<cr>
+let g:WhichKeyDesc_to_CamelCase="<leader>U convert line To CamelCase"
+"   remove all trailing whitespace
+nmap <leader>T :%s/\s\+$//e<cr>
+let g:WhichKeyDesc_remove_trailing_whitespace="<leader>T delete Trailing whitespace"
 
 " Use tab to insert a single character
 nmap <tab> i_<Esc>r
@@ -129,18 +145,22 @@ let g:WhichKeyDesc_replace_single_char="<tab> Insert single char"
 
 """ unimpared -------------------------------
 nmap [<space> <Action>(EditorStartNewLineBefore)
-let g:WhichKeyDesc_startNewLineBefore="[<space> Start new line before current"
+let g:WhichKeyDesc_startNewLineBefore="[<space> start new line before current"
 nmap ]<space> <Action>(EditorStartNewLine)
-let g:WhichKeyDesc_startNewLine="]<space> Start new line"
+let g:WhichKeyDesc_startNewLine="]<space> start new line"
 nmap [e <Action>(MoveLineUp)
-let g:WhichKeyDesc_moveLineUp="[e Move line up"
+let g:WhichKeyDesc_moveLineUp="[e move line up"
 nmap ]e <Action>(MoveLineDown)
-let g:WhichKeyDesc_moveLineDown="]e Move line down"
+let g:WhichKeyDesc_moveLineDown="]e move line down"
 nmap [b <Action>(PreviousTab)
-let g:WhichKeyDesc_prevTab="[b Goto previous tab"
+let g:WhichKeyDesc_prevTab="[b goto previous tab (Buffer)"
 nmap ]b <Action>(NextTab)
-let g:WhichKeyDesc_nextTab="]b Goto next tab"
+let g:WhichKeyDesc_nextTab="]b goto next tab (Buffer)"
 nmap [B <Action>(GoToTab1)
-let g:WhichKeyDesc_firstTab="[B Goto first tab"
+let g:WhichKeyDesc_firstTab="[B goto first tab (Buffer)"
 nmap ]B <Action>(GoToLastTab)
-let g:WhichKeyDesc_lastTab="]B Goto last tab"
+let g:WhichKeyDesc_lastTab="]B goto last tab (Buffer)"
+nmap ]w <Action>(GotoNextError)
+let g:WhichKeyDesc_goToNextError="]w go to next Warning"
+nmap [w <Action>(GotoPreviousError)
+let g:WhichKeyDesc_goToNextError="[w go to previous Warning"
