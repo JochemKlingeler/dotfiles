@@ -12,3 +12,6 @@ set -o vi
 
 # Enable debugger
 alias phpd='XDEBUG_CONFIG="idekey=docker" php'
+
+# Run make as user
+alias makeu='runuser -u www-data -- make'
