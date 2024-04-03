@@ -111,6 +111,15 @@ let g:WhichKeyDesc_findInPath="<leader>fg find in Path"
 nmap <leader>w <Action>(HideAllWindows)
 let g:WhichKeyDesc_hideAllWindows="<leader>w hide all Windows"
 
+""" Digraphs -------------------------------
+"   <C-k> <letter to use> <mutation> to insert a digraph
+"   <C-k>e: ë
+"   <C-k>e' é
+"   <C-k>e! è
+"   Euro sign is usually Eu or =e, but Ideavim does not support it apparently
+imap <M-=> €
+let g:WhichKeyDesc_euroSign="<M-=> Insert Euro (€) sign"
+
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
 imap <M-k> <Up>
@@ -118,12 +127,25 @@ imap <M-j> <Down>
 imap <M-l> <Right>
 imap <M-h> <Left>
 
+"   I often don't want to use regexes in my searches
+nmap <leader>/ /\V
+vmap <leader>/ /\V
+let g:WhichKeyDesc_nomagicSearch="<leader>/ Search next using 'very-nomagic' mode"
+nmap <leader>? ?\V
+vmap <leader>? ?\V
+let g:WhichKeyDesc_nomagicSearchReverse="<leader>? Search previous using 'very-nomagic' mode"
+nmap <leader>: :s/\V
+vmap <leader>: :s/\V
+let g:WhichKeyDesc_nomagicSubstitute="<leader>: Substitute using 'very-nomagic' mode"
+nmap <leader>% :s%/\V
+let g:WhichKeyDesc_nomagicSubstituteAll="<leader>% Substitute in all lines using 'very-nomagic' mode"
+
 "   Don't use Ex mode, use Q for formatting
 map Q gq
 
 "   Jetpack bind, a bit buggy here though
-"nmap <leader>l :ls <CR> :b <space>
-"let g:WichKey_Desc_jetpack="<leader>l jetpack"
+nmap <leader>l :ls<CR>:b<space>
+let g:WichKey_Desc_jetpack="<leader>l Jetpack bind (a bit buggy)"
 
 nmap <leader>p "0p
 let g:WhichKeyDesc_paste="<leader>p Paste from copy register"
@@ -142,6 +164,12 @@ let g:WhichKeyDesc_remove_trailing_whitespace="<leader>T delete Trailing whitesp
 " Use tab to insert a single character
 nmap <tab> i_<Esc>r
 let g:WhichKeyDesc_replace_single_char="<tab> Insert single char"
+
+""" Copilot -----------------
+imap <M-w> <Action>(copilot.applyInlaysNextWord)
+let g:WhichKeyDesc_copilotApplyInlaysNextWord="<M-W> Copilot: apply inlays next Word"
+imap <M-n> <Action>(copilot.cycleNextInlays)
+let g:WhichKeyDesc_copilotNext="<M-N> Copilot: cycle Next inlines"
 
 """ unimpared -------------------------------
 nmap [<space> <Action>(EditorStartNewLineBefore)
