@@ -17,7 +17,7 @@ set quickscope
 let g:argtextobj_pairs="[:],(:),<:>,{:}"
 
 """ WhichKey settings -----------------------
-set timeoutlen=500000
+set timeoutlen=5000
 let g:WhichKey_ShowVimActions="true"
 let g:WhichKey_DefaultDelay=100
 let g:WhichKey_ShowTypedSequence="true"
