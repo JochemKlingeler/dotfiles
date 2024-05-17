@@ -14,4 +14,5 @@ set -o vi
 alias phpd='XDEBUG_CONFIG="idekey=docker" php'
 
 # Run make as user
-alias makeu='runuser -u www-data -- make'
+alias u='runuser -u www-data -- '
+alias makeu='u make'
