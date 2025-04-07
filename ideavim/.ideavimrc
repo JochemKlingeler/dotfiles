@@ -267,9 +267,9 @@ nmap <leader>Gb <Action>(ToggleLineBreakpoint)
 let g:WhichKeyDesc_debug_toggleLineBreakpoint="<leader>Gb toggle line Breakpoint"
 nmap <leader>Gs <Action>(Stop)
 let g:WhichKeyDesc_debug_stop="<leader>Gs Stop execution"
-nmap <leader>Gd <Action>(ChooseDebugConfiguration)
+nmap <leader>Gd <Action>(DebugClass)
 let g:WhichKeyDesc_debug_debug="<leader>Gd Debug class"
-nmap <leader>Gt <Action>(ChooseRunConfiguration)
+nmap <leader>Gt <Action>(RunClass)
 let g:WhichKeyDesc_debug_runTest="<leader>Gt run Test"
 nmap <leader>Gr <Action>(RerunFailedTests)
 let g:WhichKeyDesc_debug_rerunFailedTest="<leader>Gr Rerun failed Tests"
@@ -431,10 +431,13 @@ let g:WhichKeyDesc_parameterInfo="<M-p> Parameter info"
 "   <C-k> <letter to use> <mutation> to insert a digraph
 "   <C-k>e: ë
 "   <C-k>e' é
-"   <C-k>e! è
-"   Euro sign is usually Eu or =e, but Ideavim does not support it apparently
-imap <M-=> €
-let g:WhichKeyDesc_euroSign="<M-=> Insert Euro (€) sign"
+"   <C-k>e` è (also e!)
+"   <C-k>e. ė
+"   <C-k>e> ê
+"
+"   Euro sign is usually Eu or =e, but Ideavim does not support it natively
+dig Eu 8364
+dig =e 8364
 
 """ Personal bindings -----------------------
 "   Add some movement to insertmode
