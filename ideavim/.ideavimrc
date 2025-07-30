@@ -255,6 +255,7 @@ nmap <leader>? <Action>(GotoAction)
 let g:WhichKeyDesc_showGotoAction="<leader>? Open command palette"
 
 nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
+vmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
 nmap <leader>F <Action>(SelectInProjectView)
 let g:WhichKeyDesc_showCurrentFileInProjectView="<leader>F show current File in project view"
@@ -315,6 +316,7 @@ nmap gw <Action>(AceAction)
 let g:WhichKeyDesc_AceAction="gw jump to Word"
 
 nmap gQ <Action>(ReformatCode)
+vmap gQ <Action>(ReformatCode)
 let g:WhichKeyDesc_reformatCode="gQ format whole file"
 
 """ Next / Previous --------------------------
@@ -414,7 +416,9 @@ set visualbell
 set ideajoin
 
 "   Don't use Ex mode, use Q for formatting
-map Q gq
+nmap Q <Action>(ReformatCode)
+vmap Q <Action>(ReformatCode)
+let g:WhichKeyDesc_ex_mode="Q format whole file"
 
 "  Fix for Idea jumps not populating vim jumplist "
 nmap <C-o> <Action>(Back)
