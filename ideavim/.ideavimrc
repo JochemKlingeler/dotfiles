@@ -4,7 +4,7 @@
 """ https://docs.helix-editor.com/keymap.html
 """
 """ Uses the following external plugins:
-""" * AceJump (but not the Ideavim-EasyMotion bridge plugin)
+""" * AceJump (but not the vim-easymotion bridge plugin)
 """ * GitHub Copilot
 """ * IdeaVim-Quickscope
 """ * Peekaboo
@@ -27,6 +27,8 @@ set exchange
 set highlightedyank
 " Extends the '%' motion to match more than just parentheses, see `let g:argtextobj_pairs`
 set matchit
+" Use 'iq'/'aq' to select an inner/around quote, 'ab'/'ib' for any parentheses, curly braces, or angle brackets
+set mini-ai
 " T-Pope's famous surround plugin, consider using 'ds)" and 'ysiw"'
 set surround
 " Normally `{` and `}` match only empty lines, now they also match lines with only whitespace
@@ -51,7 +53,6 @@ let g:WhichKey_DefaultDelay=1000
 let g:WhichKey_ShowTypedSequence="true"
 let g:WhichKey_SortOrder="by_key_prefix_first"
 let g:WhichKey_SortCaseSensitive="false"
-
 
 """ -----------------------------------------
 """ WhichKey Vanilla descriptions------------
@@ -114,8 +115,7 @@ let g:WhichKeyDesc_vanilla_goto_k="gk up (honor soft-wrapping)"
 let g:WhichKeyDesc_vanilla_goto_m="gm jump to middle of the screen"
 let g:WhichKeyDesc_vanilla_goto_n="gn select up to next match"
 let g:WhichKeyDesc_vanilla_goto_N="gN select up to prev match"
-"let g:WhichKeyDesc_vanilla_goto_o="go jump to [count]th character in file"
-let g:WhichKeyDesc_vanilla_goto_o="go"
+let g:WhichKeyDesc_vanilla_goto_o="go jump to [count]th character in file"
 let g:WhichKeyDesc_vanilla_goto_p="gp paste after cursor and move cursor after new text"
 let g:WhichKeyDesc_vanilla_goto_P="gP paste before cursor and move cursor after new text"
 let g:WhichKeyDesc_vanilla_goto_q="gq format line (wrap at textwidth)"
@@ -124,6 +124,7 @@ let g:WhichKeyDesc_vanilla_goto_T="gT jump to previous tab"
 let g:WhichKeyDesc_vanilla_goto_u="gu change to lowercase"
 let g:WhichKeyDesc_vanilla_goto_U="gU change to uppercase"
 let g:WhichKeyDesc_vanilla_goto_v="gv reselect visual select"
+let g:WhichKeyDesc_vanilla_goto_question_mark="g? rotate letter by 13th places (ROT13)"
 
 let g:WhichKeyDesc_vanilla_goto_tilde="g~ toggle character case"
 
@@ -197,6 +198,32 @@ let g:WhichKeyDesc_vanilla_view_t="zt scroll line to top"
 let g:WhichKeyDesc_vanilla_view_v="zv open folds to show cursor line"
 let g:WhichKeyDesc_vanilla_view_x="zx update folds"
 let g:WhichKeyDesc_vanilla_view_z="zz scroll to center"
+
+let g:WhichKeyDesc_vanilla_window="<C-w> Window..."
+let g:WhichKeyDesc_vanilla_window_down="<C-w><down> move split down"
+let g:WhichKeyDesc_vanilla_window_left="<C-w><left> move split left"
+let g:WhichKeyDesc_vanilla_window_right="<C-w><right> move split right"
+let g:WhichKeyDesc_vanilla_window_up="<C-w><up> move split up"
+let g:WhichKeyDesc_vanilla_window_c="<C-w>c Close split"
+let g:WhichKeyDesc_vanilla_window_C_c="<C-w><C-c>"
+let g:WhichKeyDesc_vanilla_window_h="<C-w>h move split left"
+let g:WhichKeyDesc_vanilla_window_C_h="<C-w><C-h>"
+let g:WhichKeyDesc_vanilla_window_j="<C-w>j move split down"
+let g:WhichKeyDesc_vanilla_window_C_j="<C-w><C-j>"
+let g:WhichKeyDesc_vanilla_window_k="<C-w>k move split up"
+let g:WhichKeyDesc_vanilla_window_C_k="<C-w><C-k>"
+let g:WhichKeyDesc_vanilla_window_l="<C-w>l move split right"
+let g:WhichKeyDesc_vanilla_window_C_l="<C-w><C-l>"
+let g:WhichKeyDesc_vanilla_window_o="<C-w>o close Other splits (Only)"
+let g:WhichKeyDesc_vanilla_window_C_o="<C-w><C-o>"
+let g:WhichKeyDesc_vanilla_window_s="<C-w>s Split horizontally"
+let g:WhichKeyDesc_vanilla_window_S="<C-w>S"
+let g:WhichKeyDesc_vanilla_window_C_s="<C-w><C-s>"
+let g:WhichKeyDesc_vanilla_window_v="<C-w>v split Vertically"
+let g:WhichKeyDesc_vanilla_window_C_v="<C-w><C-v>"
+let g:WhichKeyDesc_vanilla_window_w="<C-w>w select next Window"
+let g:WhichKeyDesc_vanilla_window_C_w="<C-w><C-w>"
+let g:WhichKeyDesc_vanilla_window_W="<C-w>W select previous Window"
 """ WhichKey Vanilla descriptions end--------
 """ -----------------------------------------
 
@@ -205,6 +232,8 @@ let g:WhichKeyDesc_vanilla_view_z="zz scroll to center"
 let g:WhichKeyDesc_space="<leader> Space mode..."
 nmap <leader>f <Action>(GotoFile)
 let g:WhichKeyDesc_findFile="<leader>f open File picker"
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+let g:WhichKeyDesc_findExplorer="<leader>e open file Explorer"
 nmap <leader>b <Action>(RecentFiles)
 let g:WhichKeyDesc_findBuffer="<leader>b open Buffer picker (recent files)"
 nmap <leader>j <Action>(RecentLocations)
@@ -228,16 +257,16 @@ let g:WhichKeyDesc_showIntentionActions="<leader>a Apply code actions"
 nmap <leader>h <Action>(ShowUsages)
 let g:WhichKeyDesc_showReferences="<leader>h select symbol references"
 nmap <leader>w <C-w>
-let g:WhichKeyDesc_toWindowMode="<leader>w go to window mode"
+let g:WhichKeyDesc_toWindowMode="<leader>w go to Window mode"
 nmap <leader>c <Action>(CommentByLineComment)
 vmap <leader>c <Action>(CommentByLineComment)
-let g:WhichKeyDesc_toggleComments="<leader>c toggle comments"
+let g:WhichKeyDesc_toggleComments="<leader>c toggle Comments"
 nmap <leader>C <Action>(CommentByBlockComment)
 vmap <leader>C <Action>(CommentByBlockComment)
-let g:WhichKeyDesc_toggleBlockComments="<leader>C toggle block comments"
+let g:WhichKeyDesc_toggleBlockComments="<leader>C toggle block Comments"
 nmap <leader><A-c> <Action>(CommentByLineComment)
 vmap <leader><A-c> <Action>(CommentByLineComment)
-let g:WhichKeyDesc_toggleLineComments="<leader><A-c> toggle line comments"
+let g:WhichKeyDesc_toggleLineComments="<leader><A-c> toggle line Comments"
 nmap <leader>p "+p
 vmap <leader>p "+p
 let g:WhichKeyDesc_systemPaste="<leader>p Paste from system clipboard (after)"
@@ -258,7 +287,7 @@ nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 vmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
 nmap <leader>F <Action>(SelectInProjectView)
-let g:WhichKeyDesc_showCurrentFileInProjectView="<leader>F show current File in project view"
+let g:WhichKeyDesc_showCurrentFileInProjectView="<leader>F show current File in explorer"
 nmap <leader>K <Action>(ShowErrorDescription)
 let g:WhichKeyDesc_showErrorDesc="<leader>K show error description"
 
@@ -301,7 +330,7 @@ let g:WhichKeyDesc_quickTypeDefinition="gy quick type definition"
 nmap gi <Action>(GotoImplementation)
 let g:WhichKeyDesc_gotoImplementation="gi go to Implementation"
 nmap gr <Action>(ShowUsages)
-let g:WhichKeyDesc_gotoImplementation="gr go to References"
+let g:WhichKeyDesc_gotoReferences="gr go to References"
 nmap gh 0
 let g:WhichKeyDesc_gotoFirstCharInLine="gh go to first column (0)"
 nmap gl $
@@ -312,7 +341,8 @@ nmap g; `.
 let g:WhichKeyDesc_gotoLastModificationCurrentFile="g; go to last modification (`.)"
 nmap ga <C-^>
 let g:WhichKeyDesc_gotoAlternateFile="ga go to Alternate file (<C-^>)"
-nmap gw <Action>(AceAction)
+nmap gw <Action>(AceWordStartAction)
+xmap gw <Action>(AceWordStartAction)
 let g:WhichKeyDesc_AceAction="gw jump to Word"
 
 nmap gQ <Action>(ReformatCode)
@@ -369,11 +399,11 @@ let g:WhichKeyDesc_selectWord="]v grow Visual selection"
 
 " window -------------------------------
 nmap <C-w>d <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_showDiagnosticDesc="<C-w>d show Diagnostic description"
 nmap <C-w><C-d> <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_showDiagnosticCtrlDesc="<C-w><C-d> show Diagnostic description"
+let g:WhichKeyDesc_showDiagnosticDesc="<C-w>d show Diagnostic description"
+let g:WhichKeyDesc_showDiagnosticDescCtr="<C-w><C-d>"
 nmap <C-w>x <Action>(MoveEditorToOppositeTabGroup)
-let g:WhichKeyDesc_moveTabToOppositeGroup="<C-w>x eXchange tab groups"
+let g:WhichKeyDesc_moveTabToOppositeGroup="<C-w>x eXchange split"
 nmap <C-w>q <Action>(CloseAllEditors)
 let g:WhichKeyDesc_closeAllBuffersInSplit="<C-w>q Quit all buffers in split"
 nmap <C-w>n <Action>(EditSourceInNewWindow)
@@ -450,14 +480,6 @@ imap <M-j> <Down>
 imap <M-l> <Right>
 imap <M-h> <Left>
 
-""" Copilot -----------------
-imap <M-;> <Action>(copilot.applyInlays)
-let g:WhichKeyDesc_copilotApplyInlays="<M-;> Copilot: apply inlays next Word"
-imap <M-w> <Action>(copilot.applyInlaysNextWord)
-let g:WhichKeyDesc_copilotApplyInlaysNextWord="<M-w> Copilot: apply inlays next Word"
-imap <M-n> <Action>(copilot.cycleNextInlays)
-let g:WhichKeyDesc_copilotNext="<M-n> Copilot: cycle Next inlines"
-
 "   I often don't want to use regexes in my searches
 let g:WhichKeyDesc_personalLeader="\\ substitute..."
 nmap \\/ /\V
@@ -485,3 +507,11 @@ let g:WhichKeyDesc_to_CamelCase="\\U convert line To CamelCase"
 "   remove all trailing whitespace
 nmap \\t :%s/\s\+$//e<cr>
 let g:WhichKeyDesc_remove_trailing_whitespace="\\t delete Trailing whitespace"
+
+"    Exchange/Surround whichkey descriptions
+let g:WhichKeyDesc_c="c Change..."
+let g:WhichKeyDesc_cs="cs Surrounding..."
+let g:WhichKeyDesc_cx="cx eXchange..."
+let g:WhichKeyDesc_cxx="cxx eXchange line"
+let g:WhichKeyDesc_cxc="cxc Clear exchange"
+let g:WhichKeyDesc_X="X eXchange"
