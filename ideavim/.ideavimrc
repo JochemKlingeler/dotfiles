@@ -112,7 +112,7 @@ let g:WhichKeyDesc_vanilla_goto_I="gI insert text in column 1 [count] times"
 let g:WhichKeyDesc_vanilla_goto_j="gj down (honor soft-wrapping)"
 let g:WhichKeyDesc_vanilla_goto_J="gJ join next line preserve spaces"
 let g:WhichKeyDesc_vanilla_goto_k="gk up (honor soft-wrapping)"
-let g:WhichKeyDesc_vanilla_goto_m="gm jump to middle of the screen"
+let g:WhichKeyDesc_vanilla_goto_m="gm jump to middle of the screen (horizontally)"
 let g:WhichKeyDesc_vanilla_goto_n="gn select up to next match"
 let g:WhichKeyDesc_vanilla_goto_N="gN select up to prev match"
 let g:WhichKeyDesc_vanilla_goto_o="go jump to [count]th character in file"
@@ -232,7 +232,9 @@ let g:WhichKeyDesc_vanilla_window_W="<C-w>W select previous Window"
 let g:WhichKeyDesc_space="<leader> Space mode..."
 nmap <leader>f <Action>(GotoFile)
 let g:WhichKeyDesc_findFile="<leader>f open File picker"
-nmap <leader>e <Action>(ActivateProjectToolWindow)
+nmap <leader>F :NERDTreeFind
+let g:WhichKeyDesc_findFileFind="<leader>F Find current File in explorer"
+nmap <leader>e :NERDTree
 let g:WhichKeyDesc_findExplorer="<leader>e open file Explorer"
 nmap <leader>b <Action>(RecentFiles)
 let g:WhichKeyDesc_findBuffer="<leader>b open Buffer picker (recent files)"
@@ -286,10 +288,6 @@ let g:WhichKeyDesc_showGotoAction="<leader>? Open command palette"
 nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 vmap <leader>R <Action>(Refactorings.QuickListPopupAction)
 let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
-nmap <leader>F <Action>(SelectInProjectView)
-let g:WhichKeyDesc_showCurrentFileInProjectView="<leader>F show current File in explorer"
-nmap <leader>K <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_showErrorDesc="<leader>K show error description"
 
 "   Run tests/debug
 let g:WhichKeyDesc_debug="<leader>G Debug..."
@@ -337,8 +335,18 @@ nmap gl $
 let g:WhichKeyDesc_gotoLastCharInLine="gl go to Last character in line ($)"
 nmap gs _
 let g:WhichKeyDesc_gotoFirstNonWhitespace="gs go to Start of line (_)"
-nmap g; `.
-let g:WhichKeyDesc_gotoLastModificationCurrentFile="g; go to last modification (`.)"
+nmap gt H
+let g:WhichKeyDesc_gotoTop="gt go to Top of file (H)"
+nmap gc M
+let g:WhichKeyDesc_gotoCentre="gc to Centre of file (M)"
+nmap gb L
+let g:WhichKeyDesc_gotoBottom="gb to Bottom of file (L)"
+nmap g. `.
+let g:WhichKeyDesc_gotoLastModificationCurrentFile="g. go to last modification (`.)"
+nmap g; <Action>(JumpToLastChange)
+let g:WhichKeyDesc_gotoPrevEditLocation="g; go to previous edit location"
+nmap g, <Action>(JumpToNextChange)
+let g:WhichKeyDesc_gotoNextEditLocation="g, go to next edit location"
 nmap ga <C-^>
 let g:WhichKeyDesc_gotoAlternateFile="ga go to Alternate file (<C-^>)"
 nmap gw <Action>(AceWordStartAction)
