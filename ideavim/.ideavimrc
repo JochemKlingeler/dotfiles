@@ -232,9 +232,9 @@ let g:WhichKeyDesc_vanilla_window_W="<C-w>W select previous Window"
 let g:WhichKeyDesc_space="<leader> Space mode..."
 nmap <leader>f <Action>(GotoFile)
 let g:WhichKeyDesc_findFile="<leader>f open File picker"
-nmap <leader>F :NERDTreeFind
+nmap <leader>F :NERDTreeFind<cr>
 let g:WhichKeyDesc_findFileFind="<leader>F Find current File in explorer"
-nmap <leader>e :NERDTree
+nmap <leader>e :NERDTree<cr>
 let g:WhichKeyDesc_findExplorer="<leader>e open file Explorer"
 nmap <leader>b <Action>(RecentFiles)
 let g:WhichKeyDesc_findBuffer="<leader>b open Buffer picker (recent files)"
@@ -367,10 +367,6 @@ nmap [D gg<Action>(GotoNextError)
 let g:WhichKeyDesc_goToFirstDiagnostic="[D go to first Diagnostic"
 nmap ]D G<Action>(GotoPreviousError)
 let g:WhichKeyDesc_goToLastDiagnostic="]D go to last Diagnostic"
-vmap [p <Action>(EditorBackwardParagraph)
-let g:WhichKeyDesc_prevParagraph="[a previous paragraph"
-vmap ]a <Action>(EditorForwardParagraph)
-let g:WhichKeyDesc_nextParagraph="]a next paragraph"
 nmap [g <Action>(VcsShowPrevChangeMarker)
 let g:WhichKeyDesc_prevChange="[g previous change (Git)"
 nmap ]g <Action>(VcsShowNextChangeMarker)
@@ -394,6 +390,10 @@ vmap [v <Action>(EditorUnSelectWord)
 let g:WhichKeyDesc_unSelectWord="[v shrink Visual selection"
 vmap ]v <Action>(EditorSelectWord)
 let g:WhichKeyDesc_selectWord="]v grow Visual selection"
+nmap [` <Action>(GotoPreviousBookmark)
+let g:WhichKeyDesc_prev_bookmark="[` previous bookmark"
+nmap ]` <Action>(GotoNextBookmark)
+let g:WhichKeyDesc_next_bookmark="]` next bookmark"
 
 " Enable if I start using tabs again...
 "nmap [b <Action>(PreviousTab)
@@ -449,6 +449,9 @@ set smartcase
 " When on, prevents beeping on error
 set visualbell
 
+" Also allow incrementing alphabetical characters
+" set nrformats+=alpha
+
 """ Idea specific settings ------------------
 " Join is handled by IDE
 set ideajoin
@@ -468,6 +471,64 @@ let g:WhichKeyDesc_goToNextError="<S-Space> go to next error"
 imap <M-p> <Action>(ParameterInfo)
 nmap <M-p> <Action>(ParameterInfo)
 let g:WhichKeyDesc_parameterInfo="<M-p> Parameter info"
+
+"   Bookmarks
+let g:WhichKeyDesc_bookmarks="<leader>` bookmarks..."
+nmap <leader>`` <Action>(ShowBookmarks)
+let g:WhichKeyDesc_bookmarksList="<leader>`` list bookmarks"
+nmap <leader>`d <Action>(ToggleBookmark)
+let g:WhichKeyDesc_bookmarksToggle="<leader>`d Delete bookmark on current line"
+nmap <leader>`c :delmarks A-Za-z0-9
+let g:WhichKeyDesc_bookmarksClear="<leader>`c Clear all bookmarks"
+nmap <leader>`p <Action>(GotoPreviousBookmark)
+let g:WhichKeyDesc_bookmarksPrevious="<leader>`p Previous bookmark"
+nmap <leader>`n <Action>(GotoNextBookmark)
+let g:WhichKeyDesc_bookmarksNext="<leader>`n Next bookmark"
+
+"   Global bookmarks are now toggle-able
+nmap mA <Action>(ToggleBookmarkA)
+nmap mB <Action>(ToggleBookmarkB)
+nmap mC <Action>(ToggleBookmarkC)
+nmap mD <Action>(ToggleBookmarkD)
+nmap mE <Action>(ToggleBookmarkE)
+nmap mF <Action>(ToggleBookmarkF)
+nmap mG <Action>(ToggleBookmarkG)
+nmap mH <Action>(ToggleBookmarkH)
+nmap mI <Action>(ToggleBookmarkI)
+nmap mJ <Action>(ToggleBookmarkJ)
+nmap mK <Action>(ToggleBookmarkK)
+nmap mL <Action>(ToggleBookmarkL)
+nmap mM <Action>(ToggleBookmarkM)
+nmap mN <Action>(ToggleBookmarkN)
+nmap mO <Action>(ToggleBookmarkO)
+nmap mP <Action>(ToggleBookmarkP)
+nmap mQ <Action>(ToggleBookmarkQ)
+nmap mR <Action>(ToggleBookmarkR)
+nmap mS <Action>(ToggleBookmarkS)
+nmap mT <Action>(ToggleBookmarkT)
+nmap mU <Action>(ToggleBookmarkU)
+nmap mV <Action>(ToggleBookmarkV)
+nmap mW <Action>(ToggleBookmarkW)
+nmap mX <Action>(ToggleBookmarkX)
+nmap mY <Action>(ToggleBookmarkY)
+nmap mZ <Action>(ToggleBookmarkZ)
+nmap m1 <Action>(ToggleBookmark1)
+nmap m2 <Action>(ToggleBookmark2)
+nmap m3 <Action>(ToggleBookmark3)
+nmap m3 <Action>(ToggleBookmark3)
+nmap m4 <Action>(ToggleBookmark4)
+nmap m4 <Action>(ToggleBookmark4)
+nmap m5 <Action>(ToggleBookmark5)
+nmap m5 <Action>(ToggleBookmark5)
+nmap m6 <Action>(ToggleBookmark6)
+nmap m6 <Action>(ToggleBookmark6)
+nmap m7 <Action>(ToggleBookmark7)
+nmap m7 <Action>(ToggleBookmark7)
+nmap m8 <Action>(ToggleBookmark8)
+nmap m8 <Action>(ToggleBookmark8)
+nmap m9 <Action>(ToggleBookmark9)
+nmap m9 <Action>(ToggleBookmark9)
+nmap m0 <Action>(ToggleBookmark0)
 
 """ Digraphs -------------------------------
 "   <C-k> <letter to use> <mutation> to insert a digraph
