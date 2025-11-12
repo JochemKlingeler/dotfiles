@@ -4,13 +4,15 @@
 """ https://docs.helix-editor.com/keymap.html
 """
 """ Uses the following external plugins:
-""" * AceJump (but not the vim-easymotion bridge plugin)
-""" * GitHub Copilot
+""" * vim-flash
 """ * IdeaVim-Quickscope
 """ * Peekaboo
 """ * WhichKey
+""" * Harpooner
+""" * Vim AnyObject
 """ Other plugins which feel vim-like:
 """ * GoldenRatio (automatically scales the active window to take up more space)
+""" * Vim CmdFloat
 """ -----------------------------------------
 
 """ Map leader to space ---------------------
@@ -20,7 +22,7 @@ let mapleader=" "
 " Add vim motions to the tree view, see: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 set NERDTree
 " Provides text-object 'a' (argument). Consider using 'cia' and 'daa' to Delete An Argument
-set argtextobj
+"set argtextobj
 " Use 'cx{motion}'/'{Visual}X' to make a selection and then again to exchange them
 set exchange
 " Shortly highlight yanked text
@@ -28,13 +30,16 @@ set highlightedyank
 " Extends the '%' motion to match more than just parentheses, see `let g:argtextobj_pairs`
 set matchit
 " Use 'iq'/'aq' to select an inner/around quote, 'ab'/'ib' for any parentheses, curly braces, or angle brackets
-set mini-ai
+" Note, replaced by Vim AnyObject
+"set mini-ai
 " T-Pope's famous surround plugin, consider using 'ds)" and 'ysiw"'
 set surround
 " Normally `{` and `}` match only empty lines, now they also match lines with only whitespace
 set vim-paragraph-motion
 
 """ External Plugins  --------------------------------
+" Vim anyobject, replaces argtextobj and mini-ai
+set anyobject
 " Peekaboo plugin shows registry in floating window
 set peekaboo
 " QuickScope plugin highlists a next character for quick f/t motion
@@ -349,8 +354,8 @@ nmap g, <Action>(JumpToNextChange)
 let g:WhichKeyDesc_gotoNextEditLocation="g, go to next edit location"
 nmap ga <C-^>
 let g:WhichKeyDesc_gotoAlternateFile="ga go to Alternate file (<C-^>)"
-nmap gw <Action>(AceWordStartAction)
-xmap gw <Action>(AceWordStartAction)
+nmap gw <Action>(flash.search)
+xmap gw <Action>(flash.search)
 let g:WhichKeyDesc_AceAction="gw jump to Word"
 
 nmap gQ <Action>(ReformatCode)
@@ -434,10 +439,8 @@ set relativenumber
 " Minimal number of lines to scroll
 set scrolljump=5
 " Minimal number of lines above and below the cursor
-set scrolloff=10
+set scrolloff=5
 " Minimal number of columns to scroll horizontally
-set sidescrolloff=10
-" Minimal number of columns above and below the cursor
 set sidescrolloff=10
 
 " Ignore case in search patterns
@@ -529,6 +532,39 @@ nmap m8 <Action>(ToggleBookmark8)
 nmap m9 <Action>(ToggleBookmark9)
 nmap m9 <Action>(ToggleBookmark9)
 nmap m0 <Action>(ToggleBookmark0)
+
+""" Harpoon-------------------------------
+nmap <M-a> <action>(HarpoonerOpenFile0)
+nmap <M-s> <action>(HarpoonerOpenFile1)
+nmap <M-d> <action>(HarpoonerOpenFile2)
+nmap <M-f> <action>(HarpoonerOpenFile3)
+
+let g:WhichKeyDesc_Harpoon="<leader>H Harpoon..."
+nmap <leader>Ha <action>(HarpoonerToggleFile)
+let g:WhichKeyDesc_HarpoonToggle="<leader>Ha Add/remove file to Harpoon"
+nmap <leader>Hc <action>(HarpoonerClearMenu)
+let g:WhichKeyDesc_HarpoonClear="<leader>Hc Clear Harpoon menu"
+nmap <leader>Hm <action>(HarpoonerToggleQuickMenu)
+let g:WhichKeyDesc_HarpoonMenu="<leader>Hm Harpoon Menu"
+nmap <leader>Hn <action>(HarpoonerNextFileAction)
+let g:WhichKeyDesc_HarpoonNext="<leader>Hn Next Harpoon file"
+nmap ]h <action>(HarpoonerNextFileAction)
+let g:WhichKeyDesc_HarpoonNextShort="]h next Harpoon file"
+nmap <leader>Hp <action>(HarpoonerPreviousFileAction)
+let g:WhichKeyDesc_HarpoonPrev="<leader>Hp Previous Harpoon file"
+nmap [h <action>(HarpoonerPreviousFileAction)
+let g:WhichKeyDesc_HarpoonPrevShort="[h previous Harpoon file"
+
+""" vim-anyobject
+let g:WhichKeyDesc_AnyObjectPrevArgument="[a previous Argument"
+let g:WhichKeyDesc_AnyObjectNextArgument="]a next Argument"
+let g:WhichKeyDesc_AnyObjectPrevFunction="[f previous Function"
+let g:WhichKeyDesc_AnyObjectNextFunction="]f next Function"
+let g:WhichKeyDesc_AnyObjectPrevItem="[i previous Item"
+let g:WhichKeyDesc_AnyObjectNextItem="]i next Item"
+let g:anyobject_included="AnyArgument,AnyFunction,AnyItem,AnyQuote,AnyBracket"
+" Defaults to `o`, but b makes way more sense to me. Also it resembles mini-ai behaviour.
+let g:anyobject_map_anybracket="b"
 
 """ Digraphs -------------------------------
 "   <C-k> <letter to use> <mutation> to insert a digraph
