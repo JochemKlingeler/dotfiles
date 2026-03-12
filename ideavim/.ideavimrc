@@ -3,6 +3,9 @@
 """ The bindings are inspired by the Helix editor keymap
 """ https://docs.helix-editor.com/keymap.html
 """
+""" Maybe at some point fully move to Helix bindings, see:
+""" https://github.com/chtenb/helix.vim/blob/main/helix.idea.vim
+"""
 """ Uses the following external plugins:
 """ * vim-flash
 """ * IdeaVim-Quickscope
@@ -10,6 +13,7 @@
 """ * WhichKey
 """ * Harpooner
 """ * Vim AnyObject
+""" * vim-dial
 """ Other plugins which feel vim-like:
 """ * GoldenRatio (automatically scales the active window to take up more space)
 """ * Vim CmdFloat
@@ -22,6 +26,7 @@ let mapleader=" "
 " Add vim motions to the tree view, see: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 set NERDTree
 " Provides text-object 'a' (argument). Consider using 'cia' and 'daa' to Delete An Argument
+" Note, replaced by Vim AnyObject
 "set argtextobj
 " Use 'cx{motion}'/'{Visual}X' to make a selection and then again to exchange them
 set exchange
@@ -40,6 +45,8 @@ set vim-paragraph-motion
 """ External Plugins  --------------------------------
 " Vim anyobject, replaces argtextobj and mini-ai
 set anyobject
+" Vim Dial, enhances <C-a> and <C-x> to support more "types"
+set dial
 " Peekaboo plugin shows registry in floating window
 set peekaboo
 " QuickScope plugin highlists a next character for quick f/t motion
@@ -360,7 +367,10 @@ let g:WhichKeyDesc_AceAction="gw jump to Word"
 
 nmap gQ <Action>(ReformatCode)
 vmap gQ <Action>(ReformatCode)
+nmap = <Action>(ReformatCode)
+vmap = <Action>(ReformatCode)
 let g:WhichKeyDesc_reformatCode="gQ format whole file"
+let g:WhichKeyDesc_reformatCodeEquals="= format whole file"
 
 """ Next / Previous --------------------------
 " Inspired by unimpaired mappings by https://docs.helix-editor.com/keymap.html#unimpaired
@@ -565,6 +575,10 @@ let g:WhichKeyDesc_AnyObjectNextItem="]i next Item"
 let g:anyobject_included="AnyArgument,AnyFunction,AnyItem,AnyQuote,AnyBracket"
 " Defaults to `o`, but b makes way more sense to me. Also it resembles mini-ai behaviour.
 let g:anyobject_map_anybracket="b"
+
+""" vim-dial
+nnoremap <C-a> :DialIncrement<cr>
+nnoremap <C-x> :DialDecrement<cr>
 
 """ Digraphs -------------------------------
 "   <C-k> <letter to use> <mutation> to insert a digraph
