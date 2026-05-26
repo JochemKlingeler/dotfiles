@@ -11,25 +11,27 @@
 """ * IdeaVim-Quickscope
 """ * Peekaboo
 """ * WhichKey
-""" * Harpooner
 """ * Vim AnyObject
 """ * vim-dial
 """ Other plugins which feel vim-like:
 """ * GoldenRatio (automatically scales the active window to take up more space)
-""" * Vim CmdFloat
 """ -----------------------------------------
 
 """ Map leader to space ---------------------
 let mapleader=" "
 
 """ Builtin Plugins  --------------------------------
+" Enables coercion mappings (crs for snake_case, crc for camelCase, cr. for dot.case, etc.)
+" Enables :Subvert case-sensitive substitute, so :S/foo/bar would replace foo with bar and Foo with Bar
+" Can use patterns, this example fixes common misspelling: :%S/{,un}nec{ce,ces,e}sar{y,ily}/{}nec{es}sar{}/g
+set abolish
 " Add vim motions to the tree view, see: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 set NERDTree
 " Provides text-object 'a' (argument). Consider using 'cia' and 'daa' to Delete An Argument
 " Note, replaced by Vim AnyObject
 "set argtextobj
 " Use 'cx{motion}'/'{Visual}X' to make a selection and then again to exchange them
-set exchange
+"set exchange
 " Shortly highlight yanked text
 set highlightedyank
 " Extends the '%' motion to match more than just parentheses, see `let g:argtextobj_pairs`
@@ -269,7 +271,7 @@ let g:WhichKeyDesc_rename="<leader>r Rename element"
 nmap <leader>a <Action>(ShowIntentionActions)
 let g:WhichKeyDesc_showIntentionActions="<leader>a Apply code actions"
 nmap <leader>h <Action>(ShowUsages)
-let g:WhichKeyDesc_showReferences="<leader>h select symbol references"
+let g:WhichKeyDesc_showReferences="<leader>h select references"
 nmap <leader>w <C-w>
 let g:WhichKeyDesc_toWindowMode="<leader>w go to Window mode"
 nmap <leader>c <Action>(CommentByLineComment)
@@ -283,6 +285,7 @@ vmap <leader><A-c> <Action>(CommentByLineComment)
 let g:WhichKeyDesc_toggleLineComments="<leader><A-c> toggle line Comments"
 nmap <leader>p "+p
 vmap <leader>p "+p
+let g:WhichKeyDesc_systemPasteBefore="<leader>P Paste from system clipboard (before)"
 let g:WhichKeyDesc_systemPaste="<leader>p Paste from system clipboard (after)"
 nmap <leader>P "+P
 vmap <leader>P "+P
@@ -290,8 +293,9 @@ let g:WhichKeyDesc_systemPasteBefore="<leader>P Paste from system clipboard (bef
 nmap <leader>y "+y
 vmap <leader>y "+y
 let g:WhichKeyDesc_systemYank="<leader>y Yank to system clipboard"
-vmap <leader>R "+p
-let g:WhichKeyDesc_systemReplace="<leader>R Replace selection by system clipboard"
+"" I prefer leader R to go to the Refactor menu
+"vmap <leader>R "+p
+"let g:WhichKeyDesc_systemReplace="<leader>R Replace selection by system clipboard"
 nmap <leader>/ <Action>(FindInPath)
 let g:WhichKeyDesc_showFindInPath="<leader>/ global search (Find in path)"
 nmap <leader>? <Action>(GotoAction)
@@ -410,15 +414,14 @@ let g:WhichKeyDesc_prev_bookmark="[` previous bookmark"
 nmap ]` <Action>(GotoNextBookmark)
 let g:WhichKeyDesc_next_bookmark="]` next bookmark"
 
-" Enable if I start using tabs again...
-"nmap [b <Action>(PreviousTab)
-"let g:WhichKeyDesc_prevTab="[b goto previous tab (Buffer)"
-"nmap ]b <Action>(NextTab)
-"let g:WhichKeyDesc_nextTab="]b goto next tab (Buffer)"
-"nmap [B <Action>(GoToTab1)
-"let g:WhichKeyDesc_firstTab="[B goto first tab (Buffer)"
-"nmap ]B <Action>(GoToLastTab)
-"let g:WhichKeyDesc_lastTab="]B goto last tab (Buffer)"
+nmap [b <Action>(PreviousTab)
+let g:WhichKeyDesc_prevTab="[b goto previous tab (Buffer)"
+nmap ]b <Action>(NextTab)
+let g:WhichKeyDesc_nextTab="]b goto next tab (Buffer)"
+nmap [B <Action>(GoToTab1)
+let g:WhichKeyDesc_firstTab="[B goto first tab (Buffer)"
+nmap ]B <Action>(GoToLastTab)
+let g:WhichKeyDesc_lastTab="]B goto last tab (Buffer)"
 
 " window -------------------------------
 nmap <C-w>d <Action>(ShowErrorDescription)
@@ -433,6 +436,27 @@ nmap <C-w>n <Action>(EditSourceInNewWindow)
 let g:WhichKeyDesc_editSourceInNewWindow="<C-w>n open New window"
 nmap <leader>W <Action>(HideAllWindows)
 let g:WhichKeyDesc_hideAllWindows="<leader>W hide all Windows"
+
+" Change -------------------------------
+let g:WhichKeyDesc_change="c Change..."
+
+" Change: Surround -------------------------------
+let g:WhichKeyDesc_surround="cs Surround (x with y)"
+
+" Change: Abolish -------------------------------
+let g:WhichKeyDesc_abolish="cr Abolish..."
+let g:WhichKeyDesc_abolishCamelCase="crc camelCase"
+let g:WhichKeyDesc_abolishDotCase="cr. dot.case"
+let g:WhichKeyDesc_abolishKebabCase="crk kebab-case"
+let g:WhichKeyDesc_abolishKebabCase2="cr- kebab-case"
+let g:WhichKeyDesc_abolishMixed="crm MixedCase"
+let g:WhichKeyDesc_abolishPascalCase="crp PascalCase"
+let g:WhichKeyDesc_abolishSnakeCase="crs snake_case"
+let g:WhichKeyDesc_abolishSnakeCase_="cr_ snake_case"
+let g:WhichKeyDesc_abolishSnakeUpper="cru SNAKE_UPPERCASE"
+let g:WhichKeyDesc_abolishSnakeUpper2="crU SNAKE_UPPERCASE"
+let g:WhichKeyDesc_abolishSpaceCase="cr<space> space case"
+let g:WhichKeyDesc_abolishTitleCase="crt Title Case"
 
 """ Common settings -------------------------
 " Indent wrapped lines to match line start
@@ -491,7 +515,7 @@ nmap <leader>`` <Action>(ShowBookmarks)
 let g:WhichKeyDesc_bookmarksList="<leader>`` list bookmarks"
 nmap <leader>`d <Action>(ToggleBookmark)
 let g:WhichKeyDesc_bookmarksToggle="<leader>`d Delete bookmark on current line"
-nmap <leader>`c :delmarks A-Za-z0-9
+nmap <leader>`c :delmarks A-Za-z0-9<cr>
 let g:WhichKeyDesc_bookmarksClear="<leader>`c Clear all bookmarks"
 nmap <leader>`p <Action>(GotoPreviousBookmark)
 let g:WhichKeyDesc_bookmarksPrevious="<leader>`p Previous bookmark"
@@ -528,42 +552,13 @@ nmap mZ <Action>(ToggleBookmarkZ)
 nmap m1 <Action>(ToggleBookmark1)
 nmap m2 <Action>(ToggleBookmark2)
 nmap m3 <Action>(ToggleBookmark3)
-nmap m3 <Action>(ToggleBookmark3)
-nmap m4 <Action>(ToggleBookmark4)
 nmap m4 <Action>(ToggleBookmark4)
 nmap m5 <Action>(ToggleBookmark5)
-nmap m5 <Action>(ToggleBookmark5)
-nmap m6 <Action>(ToggleBookmark6)
 nmap m6 <Action>(ToggleBookmark6)
 nmap m7 <Action>(ToggleBookmark7)
-nmap m7 <Action>(ToggleBookmark7)
 nmap m8 <Action>(ToggleBookmark8)
-nmap m8 <Action>(ToggleBookmark8)
-nmap m9 <Action>(ToggleBookmark9)
 nmap m9 <Action>(ToggleBookmark9)
 nmap m0 <Action>(ToggleBookmark0)
-
-""" Harpoon-------------------------------
-nmap <M-a> <action>(HarpoonerOpenFile0)
-nmap <M-s> <action>(HarpoonerOpenFile1)
-nmap <M-d> <action>(HarpoonerOpenFile2)
-nmap <M-f> <action>(HarpoonerOpenFile3)
-
-let g:WhichKeyDesc_Harpoon="<leader>H Harpoon..."
-nmap <leader>Ha <action>(HarpoonerToggleFile)
-let g:WhichKeyDesc_HarpoonToggle="<leader>Ha Add/remove file to Harpoon"
-nmap <leader>Hc <action>(HarpoonerClearMenu)
-let g:WhichKeyDesc_HarpoonClear="<leader>Hc Clear Harpoon menu"
-nmap <leader>Hm <action>(HarpoonerToggleQuickMenu)
-let g:WhichKeyDesc_HarpoonMenu="<leader>Hm Harpoon Menu"
-nmap <leader>Hn <action>(HarpoonerNextFileAction)
-let g:WhichKeyDesc_HarpoonNext="<leader>Hn Next Harpoon file"
-nmap ]h <action>(HarpoonerNextFileAction)
-let g:WhichKeyDesc_HarpoonNextShort="]h next Harpoon file"
-nmap <leader>Hp <action>(HarpoonerPreviousFileAction)
-let g:WhichKeyDesc_HarpoonPrev="<leader>Hp Previous Harpoon file"
-nmap [h <action>(HarpoonerPreviousFileAction)
-let g:WhichKeyDesc_HarpoonPrevShort="[h previous Harpoon file"
 
 """ vim-anyobject
 let g:WhichKeyDesc_AnyObjectPrevArgument="[a previous Argument"
@@ -576,9 +571,15 @@ let g:anyobject_included="AnyArgument,AnyFunction,AnyItem,AnyQuote,AnyBracket"
 " Defaults to `o`, but b makes way more sense to me. Also it resembles mini-ai behaviour.
 let g:anyobject_map_anybracket="b"
 
+""" next/prev usage
+""" Think using * to go to the next instance of that word, but now hold ALT to go to the next usage of that property
+nmap <M-S-8> <action>(GotoNextElementUnderCaretUsage)
+""" Think using # to go to the prev instance of that word, but now hold ALT to go to the next usage of that property
+nmap <M-S-3> <action>(GotoPrevElementUnderCaretUsage)
+
 """ vim-dial
-nnoremap <C-a> :DialIncrement<cr>
-nnoremap <C-x> :DialDecrement<cr>
+nmap <C-a> :DialIncrement<cr>
+nmap <C-x> :DialDecrement<cr>
 
 """ Digraphs -------------------------------
 "   <C-k> <letter to use> <mutation> to insert a digraph
@@ -618,19 +619,19 @@ let g:WhichKeyDesc_nomagicSubstituteAll="\\% Substitute in all lines using 'very
 "let g:WhichKeyDesc_jetpack="<leader>j Jetpack bind (a bit buggy)"
 
 "   CamelCase to snake_case
-nmap \\u :s/\(\u\)/_\l\1/g<cr>
-let g:WhichKeyDesc_to_snake_case="\\u convert line to snake_case"
-"   snake_case to CamelCase
-nmap \\U :s/_\(\l\)/\u\1/g<cr>
-let g:WhichKeyDesc_to_CamelCase="\\U convert line To CamelCase"
+"nmap \\u :s/\(\u\)/_\l\1/g<cr>
+"let g:WhichKeyDesc_to_snake_case="\\u convert line to snake_case"
+""   snake_case to CamelCase
+"nmap \\U :s/_\(\l\)/\u\1/g<cr>
+"let g:WhichKeyDesc_to_CamelCase="\\U convert line To CamelCase"
 "   remove all trailing whitespace
 nmap \\t :%s/\s\+$//e<cr>
 let g:WhichKeyDesc_remove_trailing_whitespace="\\t delete Trailing whitespace"
 
 "    Exchange/Surround whichkey descriptions
-let g:WhichKeyDesc_c="c Change..."
-let g:WhichKeyDesc_cs="cs Surrounding..."
-let g:WhichKeyDesc_cx="cx eXchange..."
-let g:WhichKeyDesc_cxx="cxx eXchange line"
-let g:WhichKeyDesc_cxc="cxc Clear exchange"
-let g:WhichKeyDesc_X="X eXchange"
+"let g:WhichKeyDesc_c="c Change..."
+"let g:WhichKeyDesc_cs="cs Surrounding..."
+"let g:WhichKeyDesc_cx="cx eXchange..."
+"let g:WhichKeyDesc_cxx="cxx eXchange line"
+"let g:WhichKeyDesc_cxc="cxc Clear exchange"
+"let g:WhichKeyDesc_X="X eXchange"
