@@ -1,10 +1,20 @@
+""" Selection ------------------------
+vmap <M-o> <Action>(EditorSelectWord)
+let g:WhichKeyDesc_expandSelection="<M-o> expand selection Outward"
+vmap <M-i> <Action>(EditorUnSelectWord)
+let g:WhichKeyDesc_shrinkSelection="<M-i> shrink selection Inward"
+vmap <M-;> o
+let g:WhichKeyDesc_flipCursor="<M-;> flip cursor in selection"
+
 """ Leader ------------------------
 " Inspired by Space mode by https://docs.helix-editor.com/keymap.html#space-mode
 let g:WhichKeyDesc_space="<leader> Space mode..."
 nmap <leader>f <Action>(GotoFile)
 let g:WhichKeyDesc_findFile="<leader>f open File picker"
+"" Close enough...
 nmap <leader>F :NERDTreeFind<cr>
 let g:WhichKeyDesc_findFileFind="<leader>F Find current File in explorer"
+"" Not listed as Helix doesn't really do file explorers, but in Jetbrains IDE's its useful sometimes
 nmap <leader>e :NERDTree<cr>
 let g:WhichKeyDesc_findExplorer="<leader>e open file Explorer"
 nmap <leader>b <Action>(RecentFiles)
@@ -14,15 +24,16 @@ let g:WhichKeyDesc_findLocation="<leader>j open Jumplist picker (recent location
 nmap <leader>g <Action>(RecentChangedFiles)
 let g:WhichKeyDesc_findChangedLocation="<leader>g open chanGed files picker"
 nmap <leader>k <Action>(QuickImplementations)
-let g:WhichKeyDesc_showQuickImplementation="<leader>k show quick implementation"
+let g:WhichKeyDesc_showQuickImplementation="<leader>k show documentation popup"
 nmap <leader>s <Action>(FileStructurePopup)
 let g:WhichKeyDesc_showGotoStructure="<leader>s open document Structure picker"
 nmap <leader>S <Action>(GotoSymbol)
 let g:WhichKeyDesc_showGotoSymbol="<leader>S open Symbol picker"
+"" Jetbrains has no different window for file (leader-d) or project (leader-D) diagnostics
 nmap <leader>d <Action>(ActivateProblemsViewToolWindow)
-let g:WhichKeyDesc_showFileDiagnostics="<leader>d show file Diagnostics"
 nmap <leader>D <Action>(ActivateProblemsViewToolWindow)
-let g:WhichKeyDesc_showProjectDiagnostics="<leader>D show project Diagnostics"
+let g:WhichKeyDesc_showFileDiagnostics="<leader>d show Diagnostics"
+let g:WhichKeyDesc_showProjectDiagnostics="<leader>D"
 nmap <leader>r <Action>(RenameElement)
 let g:WhichKeyDesc_rename="<leader>r Rename element"
 nmap <leader>a <Action>(ShowIntentionActions)
@@ -31,6 +42,7 @@ nmap <leader>h <Action>(ShowUsages)
 let g:WhichKeyDesc_showReferences="<leader>h select references"
 nmap <leader>w <C-w>
 let g:WhichKeyDesc_toWindowMode="<leader>w go to Window mode"
+"" There is no real "smart comment", so default to line comments
 nmap <leader>c <Action>(CommentByLineComment)
 vmap <leader>c <Action>(CommentByLineComment)
 let g:WhichKeyDesc_toggleComments="<leader>c toggle Comments"
@@ -48,8 +60,13 @@ vmap <leader>P "+P
 let g:WhichKeyDesc_systemPasteBefore="<leader>P Paste from system clipboard (before)"
 nmap <leader>y "+y
 vmap <leader>y "+y
-let g:WhichKeyDesc_systemYank="<leader>y Yank to system clipboard"
-"" I prefer leader R to go to the Refactor menu
+let g:WhichKeyDesc_systemYankSelection="<leader>y Yank to system clipboard"
+"" Yank main selection is not a thing in vim, simply remap this to regular yank
+nmap <leader>Y "+y
+vmap <leader>Y "+y
+let g:WhichKeyDesc_systemYankMainSelection="<leader>Y"
+"" Behaves the same as "+p, makes sense in Helix, less so in Vim when the more straight forward
+"" way of doing this is to make a selection and use paste.
 "vmap <leader>R "+p
 "let g:WhichKeyDesc_systemReplace="<leader>R Replace selection by system clipboard"
 nmap <leader>/ <Action>(FindInPath)
@@ -57,50 +74,10 @@ let g:WhichKeyDesc_showFindInPath="<leader>/ global search (Find in path)"
 nmap <leader>? <Action>(GotoAction)
 let g:WhichKeyDesc_showGotoAction="<leader>? Open command palette"
 
-nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
-vmap <leader>R <Action>(Refactorings.QuickListPopupAction)
-let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
-
-"   Run tests/debug
-let g:WhichKeyDesc_debug="<leader>G Debug..."
-nmap <leader>Gb <Action>(ToggleLineBreakpoint)
-let g:WhichKeyDesc_debug_toggleLineBreakpoint="<leader>Gb toggle line Breakpoint"
-nmap <leader>Gs <Action>(Stop)
-let g:WhichKeyDesc_debug_stop="<leader>Gs Stop execution"
-nmap <leader>Gd <Action>(DebugClass)
-let g:WhichKeyDesc_debug_debug="<leader>Gd Debug class"
-nmap <leader>Gt <Action>(RunClass)
-let g:WhichKeyDesc_debug_runTest="<leader>Gt run Test"
-nmap <leader>Gr <Action>(RerunFailedTests)
-let g:WhichKeyDesc_debug_rerunFailedTest="<leader>Gr Rerun failed Tests"
-
-"    VCS
-let g:WhichKeyDesc_vsc="<leader>v VCS..."
-nmap <leader>va <Action>(Annotate)
-let g:WhichKeyDesc_showVscAnnotate="<leader>va Annotate"
-nmap <leader>vc <Action>(VcsShowCurrentChangeMarker)
-let g:WhichKeyDesc_showVscCurrentChange="<leader>vc show Current change"
-nmap <leader>vf <Action>(Vcs.ShowTabbedFileHistory)
-let g:WhichKeyDesc_undoVscFileHistory="<leader>vf current File history"
-nmap <leader>vg <Action>(ActivateCommitToolWindow)
-let g:WhichKeyDesc_showVscCommitWindow="<leader>vg commit change to Git"
-nmap <leader>vl <Action>(Vcs.Show.Log)
-let g:WhichKeyDesc_undoVscLog="<leader>vl Log"
-nmap <leader>vu <Action>(Vcs.RollbackChangedLines)
-let g:WhichKeyDesc_undoVscCurrentChange="<leader>vu Undo current change"
-
 """ Goto ------------------------
 " Inspired by Goto mode by https://docs.helix-editor.com/keymap.html#goto-mode
-nmap gD <Action>(GotoSuperMethod)
-let g:WhichKeyDesc_gotoDefinition="gD go to Definition"
-nmap gd <Action>(GotoDeclaration)
-let g:WhichKeyDesc_gotoDeclaration="gd go to Declaration"
-nmap gy <Action>(QuickTypeDefinition)
-let g:WhichKeyDesc_quickTypeDefinition="gy quick type definition"
-nmap gi <Action>(GotoImplementation)
-let g:WhichKeyDesc_gotoImplementation="gi go to Implementation"
-nmap gr <Action>(ShowUsages)
-let g:WhichKeyDesc_gotoReferences="gr go to References"
+nmap ge G
+let g:WhichKeyDesc_gotoEnd="ge go to End of file (G)"
 nmap gh 0
 let g:WhichKeyDesc_gotoFirstCharInLine="gh go to first column (0)"
 nmap gl $
@@ -108,29 +85,32 @@ let g:WhichKeyDesc_gotoLastCharInLine="gl go to Last character in line ($)"
 nmap gs _
 let g:WhichKeyDesc_gotoFirstNonWhitespace="gs go to Start of line (_)"
 nmap gt H
-let g:WhichKeyDesc_gotoTop="gt go to Top of file (H)"
+let g:WhichKeyDesc_gotoTop="gt go to Top of screen (H)"
 nmap gc M
-let g:WhichKeyDesc_gotoCentre="gc to Centre of file (M)"
+let g:WhichKeyDesc_gotoCentre="gc to Centre of screen (M)"
 nmap gb L
-let g:WhichKeyDesc_gotoBottom="gb to Bottom of file (L)"
-nmap g. `.
-let g:WhichKeyDesc_gotoLastModificationCurrentFile="g. go to last modification (`.)"
-nmap g; <Action>(JumpToLastChange)
-let g:WhichKeyDesc_gotoPrevEditLocation="g; go to previous edit location"
-nmap g, <Action>(JumpToNextChange)
-let g:WhichKeyDesc_gotoNextEditLocation="g, go to next edit location"
+let g:WhichKeyDesc_gotoBottom="gb to Bottom of screen (L)"
+" gd already has default binding
+let g:WhichKeyDesc_quickTypeDefinition="gd go to Definition"
+nmap gy <Action>(QuickTypeDefinition)
+let g:WhichKeyDesc_quickTypeDefinition="gy quick type definition"
+nmap gr <Action>(ShowUsages)
+let g:WhichKeyDesc_gotoReferences="gr go to References"
+nmap gi <Action>(GotoImplementation)
+let g:WhichKeyDesc_gotoImplementation="gi go to Implementation"
 nmap ga <C-^>
 let g:WhichKeyDesc_gotoAlternateFile="ga go to Alternate file (<C-^>)"
+nmap gm <C-^>
+let g:WhichKeyDesc_gotoAlternateModifiedFile="gm go to alternate Modified file"
+nmap gn <Action>(NextTab)
+let g:WhichKeyDesc_gotoAlternateModifiedFile="gn Next buffer"
+nmap gp <Action>(PreviousTab)
+let g:WhichKeyDesc_gotoAlternateModifiedFile="gp Previous buffer"
+nmap g. `.
+let g:WhichKeyDesc_gotoLastModificationCurrentFile="g. go to last modification (`.)"
 nmap gw <Action>(AceAction)
 xmap gw <Action>(AceAction)
 let g:WhichKeyDesc_AceAction="gw jump to Word"
-
-nmap gQ <Action>(ReformatCode)
-vmap gQ <Action>(ReformatCode)
-nmap = <Action>(ReformatCode)
-vmap = <Action>(ReformatCode)
-let g:WhichKeyDesc_reformatCode="gQ format whole file"
-let g:WhichKeyDesc_reformatCodeEquals="= format whole file"
 
 """ Next / Previous --------------------------
 " Inspired by unimpaired mappings by https://docs.helix-editor.com/keymap.html#unimpaired
@@ -142,6 +122,26 @@ nmap [D gg<Action>(GotoNextError)
 let g:WhichKeyDesc_goToFirstDiagnostic="[D go to first Diagnostic"
 nmap ]D G<Action>(GotoPreviousError)
 let g:WhichKeyDesc_goToLastDiagnostic="]D go to last Diagnostic"
+"" Next/Prev function? Use native vim Next/Prev method binding instead
+" nmap ]f ]m
+" nmap [f [m
+"" Next/Prev class (type)? In all our projects, having multiple classes in one file is a big no-no
+" so simply don't bind this one.
+" nmap ]t ?
+" nmap [t ?
+"" Next/Prev argument has no implementation, sorry
+" nmap ]a ?
+" nmap [a ?
+"" Next/Prev comment has no implementation, sorry
+" nmap ]c ?
+" nmap [c ?
+"" Next/Prev test? Next/Pref method is probably the closest
+" nmap ]T ]m
+" nmap [T [m
+nmap ]p }
+let g:WhichKeyDesc_prevParagraph="]p previous Paragraph (})"
+nmap [p {
+let g:WhichKeyDesc_nextParagraph="[p next Paragraph ({)"
 nmap [g <Action>(VcsShowPrevChangeMarker)
 let g:WhichKeyDesc_prevChange="[g previous change (Git)"
 nmap ]g <Action>(VcsShowNextChangeMarker)
@@ -154,30 +154,6 @@ nmap [<Space> <Action>(EditorStartNewLineBefore)
 let g:WhichKeyDesc_startNewLineBefore="[<Space> add newline above"
 nmap ]<Space> <Action>(EditorStartNewLine)
 let g:WhichKeyDesc_startNewLine="]<Space> add newline below"
-
-nmap [e <Action>(MoveLineUp)
-vmap [e <Action>(MoveLineUp)
-let g:WhichKeyDesc_moveLineUp="[e move line up"
-nmap ]e <Action>(MoveLineDown)
-vmap ]e <Action>(MoveLineDown)
-let g:WhichKeyDesc_moveLineDown="]e move line down"
-vmap [v <Action>(EditorUnSelectWord)
-let g:WhichKeyDesc_unSelectWord="[v shrink Visual selection"
-vmap ]v <Action>(EditorSelectWord)
-let g:WhichKeyDesc_selectWord="]v grow Visual selection"
-nmap [` <Action>(GotoPreviousBookmark)
-let g:WhichKeyDesc_prev_bookmark="[` previous bookmark"
-nmap ]` <Action>(GotoNextBookmark)
-let g:WhichKeyDesc_next_bookmark="]` next bookmark"
-
-nmap [b <Action>(PreviousTab)
-let g:WhichKeyDesc_prevTab="[b goto previous tab (Buffer)"
-nmap ]b <Action>(NextTab)
-let g:WhichKeyDesc_nextTab="]b goto next tab (Buffer)"
-nmap [B <Action>(GoToTab1)
-let g:WhichKeyDesc_firstTab="[B goto first tab (Buffer)"
-nmap ]B <Action>(GoToLastTab)
-let g:WhichKeyDesc_lastTab="]B goto last tab (Buffer)"
 
 " window -------------------------------
 nmap <C-w>d <Action>(ShowErrorDescription)

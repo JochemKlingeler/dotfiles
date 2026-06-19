@@ -168,5 +168,10 @@ let g:WhichKeyDesc_vanilla_window_C_v="<C-w><C-v>"
 let g:WhichKeyDesc_vanilla_window_w="<C-w>w select next Window"
 let g:WhichKeyDesc_vanilla_window_C_w="<C-w><C-w>"
 let g:WhichKeyDesc_vanilla_window_W="<C-w>W select previous Window"
+
+let g:WhichKeyDesc_vanilla_q="q History..."
+let g:WhichKeyDesc_vanilla_q_:="q: Command history"
+let g:WhichKeyDesc_vanilla_q_slash="q/ Search forward history"
+let g:WhichKeyDesc_vanilla_q_questionmark="q? Search backwards history"
 """ WhichKey Vanilla descriptions end--------
 """ -----------------------------------------

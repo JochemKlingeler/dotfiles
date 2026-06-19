@@ -76,15 +76,78 @@ source ~/ideavim_helixlike_bindings.vim
 "   Don't use Ex mode, use Q for formatting
 nmap Q <Action>(ReformatCode)
 vmap Q <Action>(ReformatCode)
-let g:WhichKeyDesc_ex_mode="Q format whole file"
-nmap gQ <Action>(ReformatCode)
-vmap gQ <Action>(ReformatCode)
+let g:WhichKeyDesc_exMode="Q format whole file"
 nmap = <Action>(ReformatCode)
 vmap = <Action>(ReformatCode)
-let g:WhichKeyDesc_reformatCode="gQ format whole file"
 let g:WhichKeyDesc_reformatCodeEquals="= format whole file"
 
-" Change -------------------------------
+nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
+vmap <leader>R <Action>(Refactorings.QuickListPopupAction)
+let g:WhichKeyDesc_refactorMenu="<leader>R Refactor menu"
+
+""" Leader keys -------------------------------
+"   Run tests/debug
+let g:WhichKeyDesc_debug="<leader>G Debug..."
+nmap <leader>Gb <Action>(ToggleLineBreakpoint)
+let g:WhichKeyDesc_debug_toggleLineBreakpoint="<leader>Gb toggle line Breakpoint"
+nmap <leader>Gs <Action>(Stop)
+let g:WhichKeyDesc_debug_stop="<leader>Gs Stop execution"
+nmap <leader>Gd <Action>(DebugClass)
+let g:WhichKeyDesc_debug_debug="<leader>Gd Debug class"
+nmap <leader>Gt <Action>(RunClass)
+let g:WhichKeyDesc_debug_runTest="<leader>Gt run Test"
+nmap <leader>Gr <Action>(RerunFailedTests)
+let g:WhichKeyDesc_debug_rerunFailedTest="<leader>Gr Rerun failed Tests"
+
+"    VCS
+let g:WhichKeyDesc_vsc="<leader>v VCS..."
+nmap <leader>va <Action>(Annotate)
+let g:WhichKeyDesc_showVscAnnotate="<leader>va Annotate"
+nmap <leader>vc <Action>(VcsShowCurrentChangeMarker)
+let g:WhichKeyDesc_showVscCurrentChange="<leader>vc show Current change"
+nmap <leader>vf <Action>(Vcs.ShowTabbedFileHistory)
+let g:WhichKeyDesc_undoVscFileHistory="<leader>vf current File history"
+nmap <leader>vg <Action>(ActivateCommitToolWindow)
+let g:WhichKeyDesc_showVscCommitWindow="<leader>vg commit change to Git"
+nmap <leader>vl <Action>(Vcs.Show.Log)
+let g:WhichKeyDesc_undoVscLog="<leader>vl Log"
+nmap <leader>vu <Action>(Vcs.RollbackChangedLines)
+let g:WhichKeyDesc_undoVscCurrentChange="<leader>vu Undo current change"
+
+""" GOTO -------------------------------
+nmap gD <Action>(GotoSuperMethod)
+let g:WhichKeyDesc_gotoDeclaration="gD go to Declaration"
+nmap g; <Action>(JumpToLastChange)
+let g:WhichKeyDesc_gotoPrevEditLocation="g; go to previous edit location"
+nmap g, <Action>(JumpToNextChange)
+let g:WhichKeyDesc_gotoNextEditLocation="g, go to next edit location"
+
+""" Unimpaired -------------------------
+nmap [e <Action>(MoveLineUp)
+vmap [e <Action>(MoveLineUp)
+let g:WhichKeyDesc_moveLineUp="[e move line up"
+nmap ]e <Action>(MoveLineDown)
+vmap ]e <Action>(MoveLineDown)
+let g:WhichKeyDesc_moveLineDown="]e move line down"
+vmap [v <Action>(EditorUnSelectWord)
+let g:WhichKeyDesc_unSelectWord="[v shrink Visual selection (<M-i>)"
+vmap ]v <Action>(EditorSelectWord)
+let g:WhichKeyDesc_selectWord="]v grow Visual selection (<M-o>)"
+nmap [` <Action>(GotoPreviousBookmark)
+let g:WhichKeyDesc_prev_bookmark="[` previous bookmark"
+nmap ]` <Action>(GotoNextBookmark)
+let g:WhichKeyDesc_next_bookmark="]` next bookmark"
+
+nmap [b <Action>(PreviousTab)
+let g:WhichKeyDesc_prevTab="[b goto previous tab (Buffer)"
+nmap ]b <Action>(NextTab)
+let g:WhichKeyDesc_nextTab="]b goto next tab (Buffer)"
+nmap [B <Action>(GoToTab1)
+let g:WhichKeyDesc_firstTab="[B goto first tab (Buffer)"
+nmap ]B <Action>(GoToLastTab)
+let g:WhichKeyDesc_lastTab="]B goto last tab (Buffer)"
+
+""" Change -------------------------------
 let g:WhichKeyDesc_change="c Change..."
 
 " Change: Surround -------------------------------
