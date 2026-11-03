@@ -1,0 +1,26 @@
+# IntelliJ Helix Keymap Configuration
+# Location: ~/.config/helix/intellij.toml
+#
+# Dedicated to IntelliJ Helix and safe from CLI Helix conflicts!
+# You can freely bind native IDE actions via ':action <ActionId>'.
+
+[keys.normal]
+# Workaround for up and down not remembering vertical position
+"j" = ":action EditorDown"
+"k" = ":action EditorUp"
+
+# Toggle all tool windows
+"space"."W" = ":action HideAllWindows"
+
+# Bookmarks, use F11 to toggle anonymous bookmark or Ctrl+F11 to create a mnemonic bookmark
+"["."`" = ":action GotoPreviousBookmark"
+"]"."`" = ":action GotoNextBookmark"
+"space"."`" = ":action ShowBookmarks"
+
+# Next usage, no reverse for now...
+"#" = ":action GotoNextElementUnderCaretUsage"
+
+[keys.select]
+# Workaround for up and down not remembering vertical position
+"j" = ":action EditorDownWithSelection"
+"k" = ":action EditorUpWithSelection"
