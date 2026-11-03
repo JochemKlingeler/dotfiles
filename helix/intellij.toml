@@ -20,6 +20,12 @@
 # Next usage, no reverse for now...
 "#" = ":action GotoNextElementUnderCaretUsage"
 
+# About gD in Helix plugin
+# `gd` = :action GotoDefinition, to definition or find usages if on a definition
+# `gD` = :action GotoDefinitionOnly, to definition ONLY (unused in stock Helix)
+# Rebind to GotoDeclaration instead.
+"g"."D" = ":action GotoSuperMethod"
+
 [keys.select]
 # Workaround for up and down not remembering vertical position
 "j" = ":action EditorDownWithSelection"
