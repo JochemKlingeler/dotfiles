@@ -5,10 +5,6 @@
 # You can freely bind native IDE actions via ':action <ActionId>'.
 
 [keys.normal]
-# Workaround for up and down not remembering vertical position
-"j" = ":action EditorDown"
-"k" = ":action EditorUp"
-
 # Toggle all tool windows
 "space"."W" = ":action HideAllWindows"
 
@@ -26,7 +22,5 @@
 # Rebind to GotoDeclaration instead.
 "g"."D" = ":action GotoSuperMethod"
 
-[keys.select]
-# Workaround for up and down not remembering vertical position
-"j" = ":action EditorDownWithSelection"
-"k" = ":action EditorUpWithSelection"
+# Show register picker
+"space"."\"" = "registers_picker"
