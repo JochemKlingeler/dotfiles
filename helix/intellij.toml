@@ -5,6 +5,9 @@
 # You can freely bind native IDE actions via ':action <ActionId>'.
 
 [keys.normal]
+# Helix plugin does not support `select_line_above`
+"X" = "@vgl<A-:><A-;>vvkgh<esc>"
+
 # Toggle all tool windows
 "space"."W" = ":action HideAllWindows"
 
